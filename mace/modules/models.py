@@ -215,7 +215,6 @@ class MACE(torch.nn.Module):
         )
         self.interactions = torch.nn.ModuleList([inter])
 
-        # Use the appropriate self connection at the first layer for proper E0
         use_sc_first = False
         if "Residual" in str(interaction_cls_first):
             use_sc_first = True
@@ -398,7 +397,6 @@ class MACE(torch.nn.Module):
             if is_lammps and i > 0:
                 node_attrs_slice = node_attrs_slice[: lammps_natoms[0]]
             
-            # 1. Run Interaction Block (The "Backbone")
             node_feats, sc = interaction(
                 node_attrs=node_attrs_slice,
                 node_feats=node_feats,
@@ -414,7 +412,6 @@ class MACE(torch.nn.Module):
             if is_lammps and i == 0:
                 node_attrs_slice = node_attrs_slice[: lammps_natoms[0]]
             
-            # 2. Run Product Basis (Mixing features)
             node_feats = product(
                 node_feats=node_feats, sc=sc, node_attrs=node_attrs_slice
             )
@@ -638,15 +635,12 @@ class ScaleShiftMACE(MACE):
                 node_feats=node_feats, sc=sc, node_attrs=node_attrs_slice
             )
             
-            # [MODIFICATION 2] Inject Electrostatics Logic
             if self.use_electrostatics and i == 0:
                 chi_dim = self.chi_net.net[0].in_features
                 chi_inputs = node_feats[:, :chi_dim]
 
-                # Predict Electronegativity
                 chi = self.chi_net(chi_inputs)
 
-                # Solve Qeq
                 total_charge = data.get("total_charge", torch.zeros(num_graphs, device=node_feats.device))
                 charges, e_elec = self.qeq(
                     positions=positions,
@@ -657,14 +651,11 @@ class ScaleShiftMACE(MACE):
                     edge_index=data["edge_index"]
                 )
 
-                # Encode Charges
                 charge_vec = self.charge_encoder(charges) 
                 
-                # Concatenate & Project back to embedding dimension
                 combined_scalars = torch.cat([chi_inputs, charge_vec], dim=-1)
                 new_scalars = self.charge_projection(combined_scalars)
                 node_feats = torch.cat([new_scalars, node_feats[:, chi_dim:]], dim=-1)
-            # [END MODIFICATION 2]
 
             node_feats_list.append(node_feats)
 
@@ -729,7 +720,6 @@ class ScaleShiftMACE(MACE):
                 cell=cell,
             )
             
-        # [MODIFICATION 4] Return Charges in Dict
         return {
             "energy": total_energy,
             "e_elec": e_elec,
