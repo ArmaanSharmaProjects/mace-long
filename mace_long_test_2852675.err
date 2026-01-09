@@ -1,0 +1,1407 @@
+/work/10869/armaansharma547/ls6/mace-main/mace-long/lib/python3.9/site-packages/e3nn/o3/_wigner.py:10: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  _Jd, _W3j_flat, _W3j_indices = torch.load(os.path.join(os.path.dirname(__file__), 'constants.pt'))
+INFO:root:===========VERIFYING SETTINGS===========
+INFO:root:Stage Two is activated as start_stage_two was defined
+INFO:root:MACE version: 0.3.15
+DEBUG:root:Configuration: Namespace(config='config.yaml', name='MACE_model_electrostatics', seed=123, work_dir='.', log_dir='./logs', model_dir='.', checkpoints_dir='./checkpoints', results_dir='./results', downloads_dir='./downloads', device='cuda', default_dtype='float64', distributed=False, launcher='slurm', log_level='INFO', plot=True, plot_frequency=0, plot_interaction_e=False, error_table='PerAtomRMSE', model='MACE', r_max=5.0, radial_type='bessel', num_radial_basis=8, num_cutoff_basis=5, pair_repulsion=False, distance_transform='None', apply_cutoff=True, use_last_readout_only=False, use_embedding_readout=False, interaction='RealAgnosticResidualInteractionBlock', interaction_first='RealAgnosticResidualInteractionBlock', max_ell=3, correlation=3, use_reduced_cg=False, use_so3=False, use_agnostic_product=False, num_interactions=2, MLP_irreps='16x0e', radial_MLP='[64, 64, 64]', hidden_irreps='128x0e + 128x1o', edge_irreps=None, num_channels=128, max_L=1, gate='silu', scaling='rms_forces_scaling', avg_num_neighbors=1, compute_avg_num_neighbors=True, compute_stress=False, compute_forces=True, compute_polarizability=False, compute_atomic_dipole=False, train_file='mace/data/Merging/charges_train.xyz', valid_file='mace/data/Merging/charges_val.xyz', valid_fraction=0.1, test_file='mace/data/Merging/charges_test.xyz', test_dir=None, multi_processed_test=False, num_workers=0, pin_memory=True, atomic_numbers=None, mean=None, std=None, statistics_file=None, les_arguments=None, E0s='average', use_electrostatics=True, hardness_init={1: 10.0, 6: 12.0, 7: 13.0, 8: 14.0, 79: 8.0, 3: 5.0}, covalent_radii={1: 0.31, 6: 0.76, 7: 0.71, 8: 0.66, 79: 1.36, 3: 1.28}, pseudolabel_replay=False, foundation_filter_elements=True, heads=None, multiheads_finetuning=True, foundation_head=None, weight_pt_head=1.0, real_pt_data_ratio_threshold=0.1, num_samples_pt=10000, force_mh_ft_lr=False, subselect_pt='random', filter_type_pt='none', allow_random_padding_pt=True, pt_train_file=None, pt_valid_file=None, foundation_model_elements=False, keep_isolated_atoms=False, energy_key='energy', forces_key='forces', virials_key='REF_virials', stress_key='REF_stress', dipole_key='dipole', polarizability_key='polarizability', head_key='head', charges_key='charge', elec_temp_key='elec_temp', total_spin_key='total_spin', total_charge_key='charge', embedding_specs=None, skip_evaluate_heads='pt_head', loss='weighted', forces_weight=100.0, swa_forces_weight=100.0, charges_weight=1.0, energy_weight=1.0, swa_energy_weight=1000.0, virials_weight=1.0, swa_virials_weight=10.0, stress_weight=1.0, swa_stress_weight=10.0, dipole_weight=1.0, swa_dipole_weight=1.0, swa_polarizability_weight=1.0, polarizability_weight=1.0, config_type_weights='{"Default":1.0}', huber_delta=0.01, optimizer='adam', beta=0.9, batch_size=2, valid_batch_size=10, lr=0.01, swa_lr=0.001, weight_decay=5e-07, amsgrad=True, scheduler='ReduceLROnPlateau', lr_factor=0.8, scheduler_patience=50, lr_scheduler_gamma=0.9993, swa=True, start_swa=600, lbfgs=False, ema=True, ema_decay=0.99, max_num_epochs=800, patience=2048, foundation_model=None, foundation_model_kwargs='{}', foundation_model_readout=True, eval_interval=1, keep_checkpoints=False, save_all_checkpoints=False, restart_latest=True, save_cpu=False, clip_grad=10.0, dry_run=False, enable_cueq=False, only_cueq=False, enable_oeq=False, wandb=False, wandb_dir=None, wandb_project='', wandb_entity='', wandb_name='', wandb_log_hypers=['num_channels', 'max_L', 'correlation', 'lr', 'swa_lr', 'weight_decay', 'batch_size', 'max_num_epochs', 'start_swa', 'energy_weight', 'forces_weight'], key_specification=KeySpecification(info_keys={'energy': 'energy', 'stress': 'REF_stress', 'virials': 'REF_virials', 'dipole': 'dipole', 'head': 'head', 'elec_temp': 'elec_temp', 'total_charge': 'charge', 'polarizability': 'polarizability', 'total_spin': 'total_spin'}, arrays_keys={'forces': 'forces', 'charges': 'charge'}))
+INFO:root:CUDA version: 12.8, CUDA device: 0
+DEBUG:git.cmd:Popen(['git', 'version'], cwd=/work/10869/armaansharma547/ls6/mace-main, stdin=None, shell=False, universal_newlines=False)
+DEBUG:git.cmd:Popen(['git', 'version'], cwd=/work/10869/armaansharma547/ls6/mace-main, stdin=None, shell=False, universal_newlines=False)
+DEBUG:git.util:sys.platform='linux', git_executable='git'
+DEBUG:root:Error accessing Git repository: /work/10869/armaansharma547/ls6/mace-main
+INFO:root:===========LOADING INPUT DATA===========
+INFO:root:Using heads: ['Default']
+INFO:root:Using the key specifications to parse data:
+INFO:root:Default: KeySpecification(info_keys={'energy': 'energy', 'stress': 'REF_stress', 'virials': 'REF_virials', 'dipole': 'dipole', 'head': 'head', 'elec_temp': 'elec_temp', 'total_charge': 'charge', 'polarizability': 'polarizability', 'total_spin': 'total_spin'}, arrays_keys={'forces': 'forces', 'charges': 'charge'})
+INFO:root:=============    Processing head Default     ===========
+DEBUG:root:Loading training file: mace/data/Merging/charges_train.xyz
+WARNING:root:Since ASE version 3.23.0b1, using energy_key 'energy' is no longer safe when communicating between MACE and ASE. We recommend using a different key, rewriting 'energy' to 'REF_energy'. You need to use --energy_key='REF_energy' to specify the chosen key name.
+WARNING:root:Since ASE version 3.23.0b1, using forces_key 'forces' is no longer safe when communicating between MACE and ASE. We recommend using a different key, rewriting 'forces' to 'REF_forces'. You need to use --forces_key='REF_forces' to specify the chosen key name.
+INFO:root:Training set 1/1 [energy: 24, stress: 0, virials: 0, dipole components: 0, head: 24, elec_temp: 0, total_charge: 24, polarizability: 0, total_spin: 0, forces: 24, charges: 0]
+INFO:root:Total Training set [energy: 24, stress: 0, virials: 0, dipole components: 0, head: 24, elec_temp: 0, total_charge: 24, polarizability: 0, total_spin: 0, forces: 24, charges: 0]
+WARNING:root:Since ASE version 3.23.0b1, using energy_key 'energy' is no longer safe when communicating between MACE and ASE. We recommend using a different key, rewriting 'energy' to 'REF_energy'. You need to use --energy_key='REF_energy' to specify the chosen key name.
+WARNING:root:Since ASE version 3.23.0b1, using forces_key 'forces' is no longer safe when communicating between MACE and ASE. We recommend using a different key, rewriting 'forces' to 'REF_forces'. You need to use --forces_key='REF_forces' to specify the chosen key name.
+INFO:root:Validation set 1/1 [energy: 3, stress: 0, virials: 0, dipole components: 0, head: 3, elec_temp: 0, total_charge: 3, polarizability: 0, total_spin: 0, forces: 3, charges: 0]
+INFO:root:Total Validation set [energy: 3, stress: 0, virials: 0, dipole components: 0, head: 3, elec_temp: 0, total_charge: 3, polarizability: 0, total_spin: 0, forces: 3, charges: 0]
+WARNING:root:Since ASE version 3.23.0b1, using energy_key 'energy' is no longer safe when communicating between MACE and ASE. We recommend using a different key, rewriting 'energy' to 'REF_energy'. You need to use --energy_key='REF_energy' to specify the chosen key name.
+WARNING:root:Since ASE version 3.23.0b1, using forces_key 'forces' is no longer safe when communicating between MACE and ASE. We recommend using a different key, rewriting 'forces' to 'REF_forces'. You need to use --forces_key='REF_forces' to specify the chosen key name.
+INFO:root:Test set 1/1 [energy: 3, stress: 0, virials: 0, dipole components: 0, head: 3, elec_temp: 0, total_charge: 3, polarizability: 0, total_spin: 0, forces: 3, charges: 0]
+INFO:root:Total Test set [energy: 3, stress: 0, virials: 0, dipole components: 0, head: 3, elec_temp: 0, total_charge: 3, polarizability: 0, total_spin: 0, forces: 3, charges: 0]
+INFO:root:Total number of configurations: train=24, valid=3, tests=[H2O_Default: 3],
+WARNING:root:Validation batch size (10) is larger than the number of validation data (3)
+INFO:root:Atomic Numbers used: [np.int64(1), np.int64(3), np.int64(8), np.int64(79)]
+INFO:root:Isolated Atomic Energies (E0s) not in training file, using command line argument
+INFO:root:Computing average Atomic Energies using least squares regression
+INFO:root:Atomic Energies used (z: eV) for head Default: {1: -6.69477521845628, 3: -0.0523029313941894, 8: -3.3473876092281425, 79: -3.3473876092281416}
+INFO:root:Processing datasets for head 'Default'
+DEBUG:root:Successfully loaded dataset from ASE files: ['mace/data/Merging/charges_train.xyz']
+INFO:root:Combining 1 list datasets for head 'Default'
+DEBUG:root:Successfully loaded validation dataset from ASE files: ['mace/data/Merging/charges_val.xyz']
+INFO:root:Combining 1 list datasets for head 'Default_valid'
+INFO:root:Combined validation datasets for Default
+INFO:root:Head 'Default' training dataset size: 24
+INFO:root:Computing average number of neighbors
+INFO:root:Average number of neighbors: 38.07555123216602
+INFO:root:During training the following quantities will be reported: energy, forces, charges
+INFO:root:===========MODEL DETAILS===========
+INFO:root:Building model
+INFO:root:Message passing with 128 channels and max_L=1 (128x0e + 128x1o)
+INFO:root:2 layers, each with correlation order: 3 (body order: 4) and spherical harmonics up to: l=3
+INFO:root:8 radial and 5 basis functions
+INFO:root:Radial cutoff: 5.0 A (total receptive field for each atom: 10.0 A)
+INFO:root:Distance transform for radial basis functions: None
+INFO:root:Hidden irreps: 128x0e + 128x1o
+/work/10869/armaansharma547/ls6/mace-main/mace-long/lib/python3.9/site-packages/torch/jit/_check.py:178: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn(
+/work/10869/armaansharma547/ls6/mace-main/mace-long/lib/python3.9/site-packages/torch/jit/_check.py:178: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn(
+/work/10869/armaansharma547/ls6/mace-main/mace-long/lib/python3.9/site-packages/torch/jit/_check.py:178: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn(
+/work/10869/armaansharma547/ls6/mace-main/mace-long/lib/python3.9/site-packages/torch/jit/_check.py:178: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn(
+/work/10869/armaansharma547/ls6/mace-main/mace-long/lib/python3.9/site-packages/torch/jit/_check.py:178: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn(
+/work/10869/armaansharma547/ls6/mace-main/mace-long/lib/python3.9/site-packages/torch/jit/_check.py:178: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn(
+/work/10869/armaansharma547/ls6/mace-main/mace-long/lib/python3.9/site-packages/torch/jit/_check.py:178: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn(
+/work/10869/armaansharma547/ls6/mace-main/mace-long/lib/python3.9/site-packages/torch/jit/_check.py:178: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn(
+/work/10869/armaansharma547/ls6/mace-main/mace-long/lib/python3.9/site-packages/torch/jit/_check.py:178: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn(
+/work/10869/armaansharma547/ls6/mace-main/mace-long/lib/python3.9/site-packages/torch/jit/_check.py:178: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn(
+/work/10869/armaansharma547/ls6/mace-main/mace-long/lib/python3.9/site-packages/torch/jit/_check.py:178: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn(
+/work/10869/armaansharma547/ls6/mace-main/mace-long/lib/python3.9/site-packages/torch/jit/_check.py:178: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn(
+/work/10869/armaansharma547/ls6/mace-main/mace-long/lib/python3.9/site-packages/torch/jit/_check.py:178: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn(
+/work/10869/armaansharma547/ls6/mace-main/mace-long/lib/python3.9/site-packages/torch/jit/_check.py:178: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn(
+DEBUG:root:ScaleShiftMACE(
+  (chi_net): ElectronegativityModel(
+    (net): Sequential(
+      (0): Linear(in_features=128, out_features=15, bias=True)
+      (1): Tanh()
+      (2): Linear(in_features=15, out_features=15, bias=True)
+      (3): Tanh()
+      (4): Linear(in_features=15, out_features=1, bias=True)
+    )
+  )
+  (qeq): QeqSolver(
+    (hardness): ParameterDict(
+        (1): Parameter containing: [torch.cuda.DoubleTensor of size  (cuda:0)]
+        (3): Parameter containing: [torch.cuda.DoubleTensor of size  (cuda:0)]
+        (6): Parameter containing: [torch.cuda.DoubleTensor of size  (cuda:0)]
+        (7): Parameter containing: [torch.cuda.DoubleTensor of size  (cuda:0)]
+        (79): Parameter containing: [torch.cuda.DoubleTensor of size  (cuda:0)]
+        (8): Parameter containing: [torch.cuda.DoubleTensor of size  (cuda:0)]
+    )
+  )
+  (charge_encoder): GaussianSmearing()
+  (charge_projection): Linear(in_features=136, out_features=128, bias=True)
+  (node_embedding): LinearNodeEmbeddingBlock(
+    (linear): Linear(4x0e -> 128x0e | 512 weights)
+  )
+  (radial_embedding): RadialEmbeddingBlock(
+    (bessel_fn): BesselBasis(r_max=5.0, num_basis=8, trainable=False)
+    (cutoff_fn): PolynomialCutoff(p=5, r_max=5.0)
+  )
+  (spherical_harmonics): SphericalHarmonics()
+  (atomic_energies_fn): AtomicEnergiesBlock(energies=[[-6.6948, -0.0523, -3.3474, -3.3474]])
+  (interactions): ModuleList(
+    (0): RealAgnosticInteractionBlock(
+      (linear_up): Linear(128x0e -> 128x0e | 16384 weights)
+      (conv_tp): TensorProduct(128x0e x 1x0e+1x1o+1x2e+1x3o -> 128x0e+128x1o+128x2e+128x3o | 512 paths | 512 weights)
+      (conv_tp_weights): FullyConnectedNet[8, 64, 64, 64, 512]
+      (linear): Linear(128x0e+128x1o+128x2e+128x3o -> 128x0e+128x1o+128x2e+128x3o | 65536 weights)
+      (skip_tp): FullyConnectedTensorProduct(128x0e+128x1o+128x2e+128x3o x 4x0e -> 128x0e+128x1o+128x2e+128x3o | 262144 paths | 262144 weights)
+      (reshape): reshape_irreps()
+    )
+    (1): RealAgnosticResidualInteractionBlock(
+      (linear_up): Linear(128x0e+128x1o -> 128x0e+128x1o | 32768 weights)
+      (conv_tp): TensorProduct(128x0e+128x1o x 1x0e+1x1o+1x2e+1x3o -> 256x0e+384x1o+384x2e+256x3o | 1280 paths | 1280 weights)
+      (conv_tp_weights): FullyConnectedNet[8, 64, 64, 64, 1280]
+      (linear): Linear(128x0e+128x0e+128x1o+128x1o+128x1o+128x2e+128x2e+128x2e+128x3o+128x3o -> 128x0e+128x1o+128x2e+128x3o | 163840 weights)
+      (skip_tp): FullyConnectedTensorProduct(128x0e+128x1o x 4x0e -> 128x0e | 65536 paths | 65536 weights)
+      (reshape): reshape_irreps()
+    )
+  )
+  (products): ModuleList(
+    (0): EquivariantProductBasisBlock(
+      (symmetric_contractions): SymmetricContraction(
+        (contractions): ModuleList(
+          (0): Contraction(
+            (contractions_weighting): ModuleList(
+              (0-1): 2 x GraphModule()
+            )
+            (contractions_features): ModuleList(
+              (0-1): 2 x GraphModule()
+            )
+            (weights): ParameterList(
+                (0): Parameter containing: [torch.float64 of size 4x4x128 (cuda:0)]
+                (1): Parameter containing: [torch.float64 of size 4x1x128 (cuda:0)]
+            )
+            (graph_opt_main): GraphModule()
+          )
+          (1): Contraction(
+            (contractions_weighting): ModuleList(
+              (0-1): 2 x GraphModule()
+            )
+            (contractions_features): ModuleList(
+              (0-1): 2 x GraphModule()
+            )
+            (weights): ParameterList(
+                (0): Parameter containing: [torch.float64 of size 4x6x128 (cuda:0)]
+                (1): Parameter containing: [torch.float64 of size 4x1x128 (cuda:0)]
+            )
+            (graph_opt_main): GraphModule()
+          )
+        )
+      )
+      (linear): Linear(128x0e+128x1o -> 128x0e+128x1o | 32768 weights)
+    )
+    (1): EquivariantProductBasisBlock(
+      (symmetric_contractions): SymmetricContraction(
+        (contractions): ModuleList(
+          (0): Contraction(
+            (contractions_weighting): ModuleList(
+              (0-1): 2 x GraphModule()
+            )
+            (contractions_features): ModuleList(
+              (0-1): 2 x GraphModule()
+            )
+            (weights): ParameterList(
+                (0): Parameter containing: [torch.float64 of size 4x4x128 (cuda:0)]
+                (1): Parameter containing: [torch.float64 of size 4x1x128 (cuda:0)]
+            )
+            (graph_opt_main): GraphModule()
+          )
+        )
+      )
+      (linear): Linear(128x0e -> 128x0e | 16384 weights)
+    )
+  )
+  (readouts): ModuleList(
+    (0): LinearReadoutBlock(
+      (linear): Linear(128x0e+128x1o -> 1x0e | 128 weights)
+    )
+    (1): NonLinearReadoutBlock(
+      (linear_1): Linear(128x0e -> 16x0e | 2048 weights)
+      (non_linearity): Activation [x] (16x0e -> 16x0e)
+      (linear_2): Linear(16x0e -> 1x0e | 16 weights)
+    )
+  )
+  (scale_shift): ScaleShiftBlock(scale=0.7446, shift=0.0000)
+)
+INFO:root:Total number of parameters: 868261
+INFO:root:
+INFO:root:===========OPTIMIZER INFORMATION===========
+INFO:root:Using ADAM as parameter optimizer
+INFO:root:Batch size: 2
+INFO:root:Using Exponential Moving Average with decay: 0.99
+INFO:root:Number of gradient updates: 9600
+INFO:root:Learning rate: 0.01, weight decay: 5e-07
+INFO:root:WeightedEnergyForcesLoss(energy_weight=1.000, forces_weight=100.000, charges_weight=1.000)
+INFO:root:Stage Two (after 600 epochs) with loss function: WeightedEnergyForcesLoss(energy_weight=1000.000, forces_weight=100.000, charges_weight=0.000), with energy weight : 1000.0, forces weight : 100.0 and learning rate : 0.001
+WARNING:root:Cannot find checkpoint with tag 'MACE_model_electrostatics_run-123' in './checkpoints'
+INFO:root:Using gradient clipping with tolerance=10.000
+INFO:root:
+INFO:root:===========TRAINING===========
+INFO:root:Started training, reporting errors on validation set
+INFO:root:Loss metrics on validation set
+INFO:root:Initial: head: Default, loss=21.60220692, RMSE_E_per_atom=   18.47 meV, RMSE_F=  805.02 meV / A
+INFO:root:Epoch 0: head: Default, loss=8.84823101, RMSE_E_per_atom=  251.46 meV, RMSE_F=  514.60 meV / A
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-0.pt
+INFO:root:Epoch 1: head: Default, loss=3.45671713, RMSE_E_per_atom=  654.09 meV, RMSE_F=  315.29 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-0.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-1.pt
+INFO:root:Epoch 2: head: Default, loss=2.44743210, RMSE_E_per_atom=  601.05 meV, RMSE_F=  264.20 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-1.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-2.pt
+INFO:root:Epoch 3: head: Default, loss=1.53134318, RMSE_E_per_atom=  448.56 meV, RMSE_F=  209.57 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-2.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-3.pt
+INFO:root:Epoch 4: head: Default, loss=1.06535366, RMSE_E_per_atom=  304.14 meV, RMSE_F=  176.15 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-3.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-4.pt
+INFO:root:Epoch 5: head: Default, loss=0.81379507, RMSE_E_per_atom=  201.45 meV, RMSE_F=  154.94 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-4.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-5.pt
+INFO:root:Epoch 6: head: Default, loss=0.68136844, RMSE_E_per_atom=  140.72 meV, RMSE_F=  142.27 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-5.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-6.pt
+INFO:root:Epoch 7: head: Default, loss=0.58735563, RMSE_E_per_atom=  105.49 meV, RMSE_F=  132.31 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-6.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-7.pt
+INFO:root:Epoch 8: head: Default, loss=0.50079753, RMSE_E_per_atom=   82.02 meV, RMSE_F=  122.28 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-7.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-8.pt
+INFO:root:Epoch 9: head: Default, loss=0.42610821, RMSE_E_per_atom=   61.98 meV, RMSE_F=  112.87 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-8.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-9.pt
+INFO:root:Epoch 10: head: Default, loss=0.36571411, RMSE_E_per_atom=   54.37 meV, RMSE_F=  104.59 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-9.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-10.pt
+INFO:root:Epoch 11: head: Default, loss=0.31804977, RMSE_E_per_atom=   48.37 meV, RMSE_F=   97.55 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-10.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-11.pt
+INFO:root:Epoch 12: head: Default, loss=0.27874440, RMSE_E_per_atom=   42.04 meV, RMSE_F=   91.34 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-11.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-12.pt
+INFO:root:Epoch 13: head: Default, loss=0.24784531, RMSE_E_per_atom=   38.87 meV, RMSE_F=   86.13 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-12.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-13.pt
+INFO:root:Epoch 14: head: Default, loss=0.22245332, RMSE_E_per_atom=   42.47 meV, RMSE_F=   81.57 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-13.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-14.pt
+INFO:root:Epoch 15: head: Default, loss=0.20208566, RMSE_E_per_atom=   34.24 meV, RMSE_F=   77.78 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-14.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-15.pt
+INFO:root:Epoch 16: head: Default, loss=0.18631146, RMSE_E_per_atom=   25.36 meV, RMSE_F=   74.71 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-15.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-16.pt
+INFO:root:Epoch 17: head: Default, loss=0.17303572, RMSE_E_per_atom=   23.44 meV, RMSE_F=   72.00 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-16.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-17.pt
+INFO:root:Epoch 18: head: Default, loss=0.16182988, RMSE_E_per_atom=   21.39 meV, RMSE_F=   69.64 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-17.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-18.pt
+INFO:root:Epoch 19: head: Default, loss=0.15241030, RMSE_E_per_atom=   15.91 meV, RMSE_F=   67.59 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-18.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-19.pt
+INFO:root:Epoch 20: head: Default, loss=0.14443971, RMSE_E_per_atom=   20.08 meV, RMSE_F=   65.79 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-19.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-20.pt
+INFO:root:Epoch 21: head: Default, loss=0.13872333, RMSE_E_per_atom=   14.03 meV, RMSE_F=   64.49 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-20.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-21.pt
+INFO:root:Epoch 22: head: Default, loss=0.13365309, RMSE_E_per_atom=   15.66 meV, RMSE_F=   63.29 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-21.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-22.pt
+INFO:root:Epoch 23: head: Default, loss=0.12895980, RMSE_E_per_atom=   12.96 meV, RMSE_F=   62.18 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-22.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-23.pt
+INFO:root:Epoch 24: head: Default, loss=0.12406585, RMSE_E_per_atom=    9.47 meV, RMSE_F=   60.99 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-23.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-24.pt
+INFO:root:Epoch 25: head: Default, loss=0.11993276, RMSE_E_per_atom=    9.62 meV, RMSE_F=   59.97 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-24.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-25.pt
+INFO:root:Epoch 26: head: Default, loss=0.11564463, RMSE_E_per_atom=    8.49 meV, RMSE_F=   58.89 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-25.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-26.pt
+INFO:root:Epoch 27: head: Default, loss=0.11187597, RMSE_E_per_atom=    9.35 meV, RMSE_F=   57.92 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-26.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-27.pt
+INFO:root:Epoch 28: head: Default, loss=0.10859435, RMSE_E_per_atom=    7.73 meV, RMSE_F=   57.07 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-27.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-28.pt
+INFO:root:Epoch 29: head: Default, loss=0.10547265, RMSE_E_per_atom=    7.45 meV, RMSE_F=   56.24 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-28.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-29.pt
+INFO:root:Epoch 30: head: Default, loss=0.10255033, RMSE_E_per_atom=    6.04 meV, RMSE_F=   55.46 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-29.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-30.pt
+INFO:root:Epoch 31: head: Default, loss=0.09911504, RMSE_E_per_atom=    6.64 meV, RMSE_F=   54.52 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-30.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-31.pt
+INFO:root:Epoch 32: head: Default, loss=0.09627256, RMSE_E_per_atom=    6.55 meV, RMSE_F=   53.73 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-31.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-32.pt
+INFO:root:Epoch 33: head: Default, loss=0.09338510, RMSE_E_per_atom=    6.45 meV, RMSE_F=   52.92 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-32.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-33.pt
+INFO:root:Epoch 34: head: Default, loss=0.09092451, RMSE_E_per_atom=    5.59 meV, RMSE_F=   52.22 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-33.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-34.pt
+INFO:root:Epoch 35: head: Default, loss=0.08871480, RMSE_E_per_atom=    6.77 meV, RMSE_F=   51.58 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-34.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-35.pt
+INFO:root:Epoch 36: head: Default, loss=0.08685059, RMSE_E_per_atom=    6.20 meV, RMSE_F=   51.04 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-35.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-36.pt
+INFO:root:Epoch 37: head: Default, loss=0.08489833, RMSE_E_per_atom=    6.11 meV, RMSE_F=   50.46 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-36.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-37.pt
+INFO:root:Epoch 38: head: Default, loss=0.08307391, RMSE_E_per_atom=    5.48 meV, RMSE_F=   49.91 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-37.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-38.pt
+INFO:root:Epoch 39: head: Default, loss=0.08128234, RMSE_E_per_atom=    4.53 meV, RMSE_F=   49.37 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-38.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-39.pt
+INFO:root:Epoch 40: head: Default, loss=0.07951453, RMSE_E_per_atom=    5.67 meV, RMSE_F=   48.83 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-39.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-40.pt
+INFO:root:Epoch 41: head: Default, loss=0.07800808, RMSE_E_per_atom=    4.28 meV, RMSE_F=   48.37 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-40.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-41.pt
+INFO:root:Epoch 42: head: Default, loss=0.07640286, RMSE_E_per_atom=    5.13 meV, RMSE_F=   47.87 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-41.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-42.pt
+INFO:root:Epoch 43: head: Default, loss=0.07482126, RMSE_E_per_atom=    5.06 meV, RMSE_F=   47.37 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-42.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-43.pt
+INFO:root:Epoch 44: head: Default, loss=0.07355321, RMSE_E_per_atom=    5.45 meV, RMSE_F=   46.97 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-43.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-44.pt
+INFO:root:Epoch 45: head: Default, loss=0.07229710, RMSE_E_per_atom=    4.24 meV, RMSE_F=   46.57 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-44.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-45.pt
+INFO:root:Epoch 46: head: Default, loss=0.07093650, RMSE_E_per_atom=    4.18 meV, RMSE_F=   46.13 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-45.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-46.pt
+INFO:root:Epoch 47: head: Default, loss=0.06959772, RMSE_E_per_atom=    4.17 meV, RMSE_F=   45.69 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-46.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-47.pt
+INFO:root:Epoch 48: head: Default, loss=0.06835949, RMSE_E_per_atom=    3.80 meV, RMSE_F=   45.28 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-47.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-48.pt
+INFO:root:Epoch 49: head: Default, loss=0.06717441, RMSE_E_per_atom=    3.89 meV, RMSE_F=   44.89 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-48.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-49.pt
+INFO:root:Epoch 50: head: Default, loss=0.06613171, RMSE_E_per_atom=    4.06 meV, RMSE_F=   44.54 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-49.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-50.pt
+INFO:root:Epoch 51: head: Default, loss=0.06504415, RMSE_E_per_atom=    4.59 meV, RMSE_F=   44.17 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-50.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-51.pt
+INFO:root:Epoch 52: head: Default, loss=0.06426194, RMSE_E_per_atom=    4.26 meV, RMSE_F=   43.90 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-51.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-52.pt
+INFO:root:Epoch 53: head: Default, loss=0.06349342, RMSE_E_per_atom=    4.00 meV, RMSE_F=   43.64 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-52.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-53.pt
+INFO:root:Epoch 54: head: Default, loss=0.06256016, RMSE_E_per_atom=    3.91 meV, RMSE_F=   43.32 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-53.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-54.pt
+INFO:root:Epoch 55: head: Default, loss=0.06196323, RMSE_E_per_atom=    4.22 meV, RMSE_F=   43.11 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-54.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-55.pt
+INFO:root:Epoch 56: head: Default, loss=0.06114975, RMSE_E_per_atom=    4.12 meV, RMSE_F=   42.83 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-55.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-56.pt
+INFO:root:Epoch 57: head: Default, loss=0.06053420, RMSE_E_per_atom=    4.08 meV, RMSE_F=   42.61 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-56.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-57.pt
+INFO:root:Epoch 58: head: Default, loss=0.06005674, RMSE_E_per_atom=    3.96 meV, RMSE_F=   42.44 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-57.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-58.pt
+INFO:root:Epoch 59: head: Default, loss=0.05966550, RMSE_E_per_atom=    4.12 meV, RMSE_F=   42.30 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-58.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-59.pt
+INFO:root:Epoch 60: head: Default, loss=0.05927663, RMSE_E_per_atom=    3.87 meV, RMSE_F=   42.16 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-59.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-60.pt
+INFO:root:Epoch 61: head: Default, loss=0.05880242, RMSE_E_per_atom=    3.81 meV, RMSE_F=   42.00 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-60.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-61.pt
+INFO:root:Epoch 62: head: Default, loss=0.05822025, RMSE_E_per_atom=    3.22 meV, RMSE_F=   41.79 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-61.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-62.pt
+INFO:root:Epoch 63: head: Default, loss=0.05768738, RMSE_E_per_atom=    3.22 meV, RMSE_F=   41.60 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-62.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-63.pt
+INFO:root:Epoch 64: head: Default, loss=0.05713062, RMSE_E_per_atom=    3.15 meV, RMSE_F=   41.40 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-63.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-64.pt
+INFO:root:Epoch 65: head: Default, loss=0.05657067, RMSE_E_per_atom=    3.71 meV, RMSE_F=   41.19 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-64.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-65.pt
+INFO:root:Epoch 66: head: Default, loss=0.05630298, RMSE_E_per_atom=    3.53 meV, RMSE_F=   41.09 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-65.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-66.pt
+INFO:root:Epoch 67: head: Default, loss=0.05601733, RMSE_E_per_atom=    3.47 meV, RMSE_F=   40.99 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-66.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-67.pt
+INFO:root:Epoch 68: head: Default, loss=0.05564594, RMSE_E_per_atom=    3.52 meV, RMSE_F=   40.85 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-67.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-68.pt
+INFO:root:Epoch 69: head: Default, loss=0.05525895, RMSE_E_per_atom=    3.29 meV, RMSE_F=   40.71 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-68.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-69.pt
+INFO:root:Epoch 70: head: Default, loss=0.05494135, RMSE_E_per_atom=    3.30 meV, RMSE_F=   40.59 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-69.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-70.pt
+INFO:root:Epoch 71: head: Default, loss=0.05455563, RMSE_E_per_atom=    3.13 meV, RMSE_F=   40.45 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-70.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-71.pt
+INFO:root:Epoch 72: head: Default, loss=0.05412036, RMSE_E_per_atom=    3.03 meV, RMSE_F=   40.29 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-71.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-72.pt
+INFO:root:Epoch 73: head: Default, loss=0.05371579, RMSE_E_per_atom=    2.81 meV, RMSE_F=   40.14 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-72.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-73.pt
+INFO:root:Epoch 74: head: Default, loss=0.05337388, RMSE_E_per_atom=    2.86 meV, RMSE_F=   40.01 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-73.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-74.pt
+INFO:root:Epoch 75: head: Default, loss=0.05302692, RMSE_E_per_atom=    2.55 meV, RMSE_F=   39.88 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-74.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-75.pt
+INFO:root:Epoch 76: head: Default, loss=0.05262024, RMSE_E_per_atom=    2.77 meV, RMSE_F=   39.73 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-75.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-76.pt
+INFO:root:Epoch 77: head: Default, loss=0.05229742, RMSE_E_per_atom=    2.64 meV, RMSE_F=   39.61 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-76.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-77.pt
+INFO:root:Epoch 78: head: Default, loss=0.05201497, RMSE_E_per_atom=    2.91 meV, RMSE_F=   39.50 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-77.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-78.pt
+INFO:root:Epoch 79: head: Default, loss=0.05166915, RMSE_E_per_atom=    2.62 meV, RMSE_F=   39.37 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-78.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-79.pt
+INFO:root:Epoch 80: head: Default, loss=0.05131273, RMSE_E_per_atom=    2.55 meV, RMSE_F=   39.23 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-79.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-80.pt
+INFO:root:Epoch 81: head: Default, loss=0.05091851, RMSE_E_per_atom=    2.45 meV, RMSE_F=   39.08 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-80.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-81.pt
+INFO:root:Epoch 82: head: Default, loss=0.05069062, RMSE_E_per_atom=    2.55 meV, RMSE_F=   38.99 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-81.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-82.pt
+INFO:root:Epoch 83: head: Default, loss=0.05034856, RMSE_E_per_atom=    2.58 meV, RMSE_F=   38.86 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-82.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-83.pt
+INFO:root:Epoch 84: head: Default, loss=0.05008729, RMSE_E_per_atom=    2.23 meV, RMSE_F=   38.76 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-83.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-84.pt
+INFO:root:Epoch 85: head: Default, loss=0.04982684, RMSE_E_per_atom=    2.47 meV, RMSE_F=   38.66 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-84.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-85.pt
+INFO:root:Epoch 86: head: Default, loss=0.04949030, RMSE_E_per_atom=    2.38 meV, RMSE_F=   38.53 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-85.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-86.pt
+INFO:root:Epoch 87: head: Default, loss=0.04925178, RMSE_E_per_atom=    2.31 meV, RMSE_F=   38.43 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-86.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-87.pt
+INFO:root:Epoch 88: head: Default, loss=0.04902594, RMSE_E_per_atom=    2.34 meV, RMSE_F=   38.35 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-87.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-88.pt
+INFO:root:Epoch 89: head: Default, loss=0.04870980, RMSE_E_per_atom=    2.38 meV, RMSE_F=   38.22 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-88.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-89.pt
+INFO:root:Epoch 90: head: Default, loss=0.04849261, RMSE_E_per_atom=    2.42 meV, RMSE_F=   38.14 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-89.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-90.pt
+INFO:root:Epoch 91: head: Default, loss=0.04824310, RMSE_E_per_atom=    2.25 meV, RMSE_F=   38.04 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-90.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-91.pt
+INFO:root:Epoch 92: head: Default, loss=0.04795258, RMSE_E_per_atom=    2.32 meV, RMSE_F=   37.92 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-91.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-92.pt
+INFO:root:Epoch 93: head: Default, loss=0.04775627, RMSE_E_per_atom=    2.36 meV, RMSE_F=   37.85 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-92.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-93.pt
+INFO:root:Epoch 94: head: Default, loss=0.04755669, RMSE_E_per_atom=    2.20 meV, RMSE_F=   37.77 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-93.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-94.pt
+INFO:root:Epoch 95: head: Default, loss=0.04732786, RMSE_E_per_atom=    2.53 meV, RMSE_F=   37.67 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-94.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-95.pt
+INFO:root:Epoch 96: head: Default, loss=0.04720672, RMSE_E_per_atom=    2.14 meV, RMSE_F=   37.63 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-95.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-96.pt
+INFO:root:Epoch 97: head: Default, loss=0.04708275, RMSE_E_per_atom=    2.58 meV, RMSE_F=   37.58 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-96.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-97.pt
+INFO:root:Epoch 98: head: Default, loss=0.04696764, RMSE_E_per_atom=    2.41 meV, RMSE_F=   37.53 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-97.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-98.pt
+INFO:root:Epoch 99: head: Default, loss=0.04686856, RMSE_E_per_atom=    2.63 meV, RMSE_F=   37.49 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-98.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-99.pt
+INFO:root:Epoch 100: head: Default, loss=0.04670430, RMSE_E_per_atom=    2.59 meV, RMSE_F=   37.43 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-99.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-100.pt
+INFO:root:Epoch 101: head: Default, loss=0.04660759, RMSE_E_per_atom=    2.43 meV, RMSE_F=   37.39 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-100.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-101.pt
+INFO:root:Epoch 102: head: Default, loss=0.04648903, RMSE_E_per_atom=    2.49 meV, RMSE_F=   37.34 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-101.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-102.pt
+INFO:root:Epoch 103: head: Default, loss=0.04628472, RMSE_E_per_atom=    2.67 meV, RMSE_F=   37.26 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-102.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-103.pt
+INFO:root:Epoch 104: head: Default, loss=0.04614004, RMSE_E_per_atom=    2.47 meV, RMSE_F=   37.20 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-103.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-104.pt
+INFO:root:Epoch 105: head: Default, loss=0.04604376, RMSE_E_per_atom=    2.51 meV, RMSE_F=   37.16 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-104.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-105.pt
+INFO:root:Epoch 106: head: Default, loss=0.04587619, RMSE_E_per_atom=    2.52 meV, RMSE_F=   37.09 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-105.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-106.pt
+INFO:root:Epoch 107: head: Default, loss=0.04581952, RMSE_E_per_atom=    2.35 meV, RMSE_F=   37.07 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-106.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-107.pt
+INFO:root:Epoch 108: head: Default, loss=0.04578013, RMSE_E_per_atom=    2.26 meV, RMSE_F=   37.05 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-107.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-108.pt
+INFO:root:Epoch 109: head: Default, loss=0.04571139, RMSE_E_per_atom=    2.30 meV, RMSE_F=   37.02 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-108.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-109.pt
+INFO:root:Epoch 110: head: Default, loss=0.04557161, RMSE_E_per_atom=    2.30 meV, RMSE_F=   36.97 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-109.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-110.pt
+INFO:root:Epoch 111: head: Default, loss=0.04546331, RMSE_E_per_atom=    2.17 meV, RMSE_F=   36.92 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-110.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-111.pt
+INFO:root:Epoch 112: head: Default, loss=0.04535859, RMSE_E_per_atom=    2.52 meV, RMSE_F=   36.88 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-111.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-112.pt
+INFO:root:Epoch 113: head: Default, loss=0.04524778, RMSE_E_per_atom=    2.29 meV, RMSE_F=   36.83 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-112.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-113.pt
+INFO:root:Epoch 114: head: Default, loss=0.04521243, RMSE_E_per_atom=    2.31 meV, RMSE_F=   36.82 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-113.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-114.pt
+INFO:root:Epoch 115: head: Default, loss=0.04501796, RMSE_E_per_atom=    2.15 meV, RMSE_F=   36.74 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-114.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-115.pt
+INFO:root:Epoch 116: head: Default, loss=0.04484366, RMSE_E_per_atom=    2.32 meV, RMSE_F=   36.67 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-115.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-116.pt
+INFO:root:Epoch 117: head: Default, loss=0.04481069, RMSE_E_per_atom=    2.01 meV, RMSE_F=   36.66 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-116.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-117.pt
+INFO:root:Epoch 118: head: Default, loss=0.04464500, RMSE_E_per_atom=    2.13 meV, RMSE_F=   36.59 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-117.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-118.pt
+INFO:root:Epoch 119: head: Default, loss=0.04454364, RMSE_E_per_atom=    1.87 meV, RMSE_F=   36.55 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-118.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-119.pt
+INFO:root:Epoch 120: head: Default, loss=0.04447974, RMSE_E_per_atom=    1.94 meV, RMSE_F=   36.52 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-119.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-120.pt
+INFO:root:Epoch 121: head: Default, loss=0.04437536, RMSE_E_per_atom=    2.12 meV, RMSE_F=   36.48 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-120.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-121.pt
+INFO:root:Epoch 122: head: Default, loss=0.04436157, RMSE_E_per_atom=    2.11 meV, RMSE_F=   36.47 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-121.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-122.pt
+INFO:root:Epoch 123: head: Default, loss=0.04422834, RMSE_E_per_atom=    1.96 meV, RMSE_F=   36.42 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-122.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-123.pt
+INFO:root:Epoch 124: head: Default, loss=0.04415175, RMSE_E_per_atom=    2.12 meV, RMSE_F=   36.38 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-123.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-124.pt
+INFO:root:Epoch 125: head: Default, loss=0.04407218, RMSE_E_per_atom=    1.79 meV, RMSE_F=   36.35 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-124.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-125.pt
+INFO:root:Epoch 126: head: Default, loss=0.04386093, RMSE_E_per_atom=    2.29 meV, RMSE_F=   36.26 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-125.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-126.pt
+INFO:root:Epoch 127: head: Default, loss=0.04385533, RMSE_E_per_atom=    1.99 meV, RMSE_F=   36.26 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-126.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-127.pt
+INFO:root:Epoch 128: head: Default, loss=0.04378309, RMSE_E_per_atom=    2.14 meV, RMSE_F=   36.23 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-127.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-128.pt
+INFO:root:Epoch 129: head: Default, loss=0.04376642, RMSE_E_per_atom=    2.03 meV, RMSE_F=   36.22 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-128.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-129.pt
+INFO:root:Epoch 130: head: Default, loss=0.04365792, RMSE_E_per_atom=    2.01 meV, RMSE_F=   36.18 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-129.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-130.pt
+INFO:root:Epoch 131: head: Default, loss=0.04360118, RMSE_E_per_atom=    2.15 meV, RMSE_F=   36.16 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-130.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-131.pt
+INFO:root:Epoch 132: head: Default, loss=0.04352719, RMSE_E_per_atom=    1.97 meV, RMSE_F=   36.13 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-131.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-132.pt
+INFO:root:Epoch 133: head: Default, loss=0.04348954, RMSE_E_per_atom=    2.05 meV, RMSE_F=   36.11 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-132.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-133.pt
+INFO:root:Epoch 134: head: Default, loss=0.04346532, RMSE_E_per_atom=    2.29 meV, RMSE_F=   36.10 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-133.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-134.pt
+INFO:root:Epoch 135: head: Default, loss=0.04339119, RMSE_E_per_atom=    1.88 meV, RMSE_F=   36.07 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-134.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-135.pt
+INFO:root:Epoch 136: head: Default, loss=0.04334973, RMSE_E_per_atom=    2.21 meV, RMSE_F=   36.05 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-135.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-136.pt
+INFO:root:Epoch 137: head: Default, loss=0.04331962, RMSE_E_per_atom=    2.04 meV, RMSE_F=   36.04 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-136.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-137.pt
+INFO:root:Epoch 138: head: Default, loss=0.04332442, RMSE_E_per_atom=    2.05 meV, RMSE_F=   36.04 meV / A
+INFO:root:Epoch 139: head: Default, loss=0.04335035, RMSE_E_per_atom=    1.95 meV, RMSE_F=   36.05 meV / A
+INFO:root:Epoch 140: head: Default, loss=0.04330032, RMSE_E_per_atom=    2.04 meV, RMSE_F=   36.03 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-137.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-140.pt
+INFO:root:Epoch 141: head: Default, loss=0.04325990, RMSE_E_per_atom=    2.02 meV, RMSE_F=   36.01 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-140.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-141.pt
+INFO:root:Epoch 142: head: Default, loss=0.04316840, RMSE_E_per_atom=    2.03 meV, RMSE_F=   35.97 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-141.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-142.pt
+INFO:root:Epoch 143: head: Default, loss=0.04322586, RMSE_E_per_atom=    1.99 meV, RMSE_F=   36.00 meV / A
+INFO:root:Epoch 144: head: Default, loss=0.04309641, RMSE_E_per_atom=    2.05 meV, RMSE_F=   35.94 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-142.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-144.pt
+INFO:root:Epoch 145: head: Default, loss=0.04310168, RMSE_E_per_atom=    1.95 meV, RMSE_F=   35.95 meV / A
+INFO:root:Epoch 146: head: Default, loss=0.04302424, RMSE_E_per_atom=    2.10 meV, RMSE_F=   35.91 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-144.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-146.pt
+INFO:root:Epoch 147: head: Default, loss=0.04292984, RMSE_E_per_atom=    1.93 meV, RMSE_F=   35.87 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-146.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-147.pt
+INFO:root:Epoch 148: head: Default, loss=0.04277163, RMSE_E_per_atom=    2.03 meV, RMSE_F=   35.81 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-147.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-148.pt
+INFO:root:Epoch 149: head: Default, loss=0.04272911, RMSE_E_per_atom=    2.02 meV, RMSE_F=   35.79 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-148.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-149.pt
+INFO:root:Epoch 150: head: Default, loss=0.04274884, RMSE_E_per_atom=    1.93 meV, RMSE_F=   35.80 meV / A
+INFO:root:Epoch 151: head: Default, loss=0.04274271, RMSE_E_per_atom=    1.96 meV, RMSE_F=   35.80 meV / A
+INFO:root:Epoch 152: head: Default, loss=0.04258981, RMSE_E_per_atom=    1.85 meV, RMSE_F=   35.73 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-149.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-152.pt
+INFO:root:Epoch 153: head: Default, loss=0.04262302, RMSE_E_per_atom=    1.99 meV, RMSE_F=   35.75 meV / A
+INFO:root:Epoch 154: head: Default, loss=0.04264566, RMSE_E_per_atom=    1.86 meV, RMSE_F=   35.76 meV / A
+INFO:root:Epoch 155: head: Default, loss=0.04266929, RMSE_E_per_atom=    1.80 meV, RMSE_F=   35.77 meV / A
+INFO:root:Epoch 156: head: Default, loss=0.04259205, RMSE_E_per_atom=    1.86 meV, RMSE_F=   35.73 meV / A
+INFO:root:Epoch 157: head: Default, loss=0.04262469, RMSE_E_per_atom=    1.88 meV, RMSE_F=   35.75 meV / A
+INFO:root:Epoch 158: head: Default, loss=0.04256078, RMSE_E_per_atom=    1.93 meV, RMSE_F=   35.72 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-152.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-158.pt
+INFO:root:Epoch 159: head: Default, loss=0.04256782, RMSE_E_per_atom=    1.85 meV, RMSE_F=   35.72 meV / A
+INFO:root:Epoch 160: head: Default, loss=0.04248201, RMSE_E_per_atom=    2.01 meV, RMSE_F=   35.69 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-158.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-160.pt
+INFO:root:Epoch 161: head: Default, loss=0.04245481, RMSE_E_per_atom=    1.81 meV, RMSE_F=   35.67 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-160.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-161.pt
+INFO:root:Epoch 162: head: Default, loss=0.04245481, RMSE_E_per_atom=    1.99 meV, RMSE_F=   35.67 meV / A
+INFO:root:Epoch 163: head: Default, loss=0.04241111, RMSE_E_per_atom=    1.86 meV, RMSE_F=   35.66 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-161.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-163.pt
+INFO:root:Epoch 164: head: Default, loss=0.04235835, RMSE_E_per_atom=    1.93 meV, RMSE_F=   35.63 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-163.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-164.pt
+INFO:root:Epoch 165: head: Default, loss=0.04235762, RMSE_E_per_atom=    2.00 meV, RMSE_F=   35.63 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-164.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-165.pt
+INFO:root:Epoch 166: head: Default, loss=0.04239628, RMSE_E_per_atom=    1.85 meV, RMSE_F=   35.65 meV / A
+INFO:root:Epoch 167: head: Default, loss=0.04240069, RMSE_E_per_atom=    1.84 meV, RMSE_F=   35.65 meV / A
+INFO:root:Epoch 168: head: Default, loss=0.04231305, RMSE_E_per_atom=    1.91 meV, RMSE_F=   35.61 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-165.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-168.pt
+INFO:root:Epoch 169: head: Default, loss=0.04231275, RMSE_E_per_atom=    1.73 meV, RMSE_F=   35.62 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-168.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-169.pt
+INFO:root:Epoch 170: head: Default, loss=0.04226846, RMSE_E_per_atom=    1.71 meV, RMSE_F=   35.60 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-169.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-170.pt
+INFO:root:Epoch 171: head: Default, loss=0.04227745, RMSE_E_per_atom=    1.85 meV, RMSE_F=   35.60 meV / A
+INFO:root:Epoch 172: head: Default, loss=0.04229523, RMSE_E_per_atom=    1.74 meV, RMSE_F=   35.61 meV / A
+INFO:root:Epoch 173: head: Default, loss=0.04232272, RMSE_E_per_atom=    1.94 meV, RMSE_F=   35.62 meV / A
+INFO:root:Epoch 174: head: Default, loss=0.04234169, RMSE_E_per_atom=    1.70 meV, RMSE_F=   35.63 meV / A
+INFO:root:Epoch 175: head: Default, loss=0.04231478, RMSE_E_per_atom=    1.83 meV, RMSE_F=   35.62 meV / A
+INFO:root:Epoch 176: head: Default, loss=0.04232697, RMSE_E_per_atom=    1.89 meV, RMSE_F=   35.62 meV / A
+INFO:root:Epoch 177: head: Default, loss=0.04231033, RMSE_E_per_atom=    1.75 meV, RMSE_F=   35.61 meV / A
+INFO:root:Epoch 178: head: Default, loss=0.04222475, RMSE_E_per_atom=    1.78 meV, RMSE_F=   35.58 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-170.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-178.pt
+INFO:root:Epoch 179: head: Default, loss=0.04227268, RMSE_E_per_atom=    1.90 meV, RMSE_F=   35.60 meV / A
+INFO:root:Epoch 180: head: Default, loss=0.04231065, RMSE_E_per_atom=    1.79 meV, RMSE_F=   35.61 meV / A
+INFO:root:Epoch 181: head: Default, loss=0.04231276, RMSE_E_per_atom=    1.91 meV, RMSE_F=   35.61 meV / A
+INFO:root:Epoch 182: head: Default, loss=0.04230110, RMSE_E_per_atom=    1.88 meV, RMSE_F=   35.61 meV / A
+INFO:root:Epoch 183: head: Default, loss=0.04231415, RMSE_E_per_atom=    1.80 meV, RMSE_F=   35.61 meV / A
+INFO:root:Epoch 184: head: Default, loss=0.04231523, RMSE_E_per_atom=    2.03 meV, RMSE_F=   35.61 meV / A
+INFO:root:Epoch 185: head: Default, loss=0.04236951, RMSE_E_per_atom=    1.82 meV, RMSE_F=   35.64 meV / A
+INFO:root:Epoch 186: head: Default, loss=0.04236574, RMSE_E_per_atom=    1.96 meV, RMSE_F=   35.64 meV / A
+INFO:root:Epoch 187: head: Default, loss=0.04235003, RMSE_E_per_atom=    1.71 meV, RMSE_F=   35.63 meV / A
+INFO:root:Epoch 188: head: Default, loss=0.04239028, RMSE_E_per_atom=    2.05 meV, RMSE_F=   35.65 meV / A
+INFO:root:Epoch 189: head: Default, loss=0.04241920, RMSE_E_per_atom=    1.78 meV, RMSE_F=   35.66 meV / A
+INFO:root:Epoch 190: head: Default, loss=0.04238266, RMSE_E_per_atom=    1.95 meV, RMSE_F=   35.64 meV / A
+INFO:root:Epoch 191: head: Default, loss=0.04242239, RMSE_E_per_atom=    1.93 meV, RMSE_F=   35.66 meV / A
+INFO:root:Epoch 192: head: Default, loss=0.04233940, RMSE_E_per_atom=    1.97 meV, RMSE_F=   35.63 meV / A
+INFO:root:Epoch 193: head: Default, loss=0.04238238, RMSE_E_per_atom=    1.83 meV, RMSE_F=   35.64 meV / A
+INFO:root:Epoch 194: head: Default, loss=0.04230961, RMSE_E_per_atom=    1.84 meV, RMSE_F=   35.61 meV / A
+INFO:root:Epoch 195: head: Default, loss=0.04240707, RMSE_E_per_atom=    1.96 meV, RMSE_F=   35.65 meV / A
+INFO:root:Epoch 196: head: Default, loss=0.04240986, RMSE_E_per_atom=    1.77 meV, RMSE_F=   35.66 meV / A
+INFO:root:Epoch 197: head: Default, loss=0.04250437, RMSE_E_per_atom=    1.87 meV, RMSE_F=   35.70 meV / A
+INFO:root:Epoch 198: head: Default, loss=0.04258676, RMSE_E_per_atom=    1.81 meV, RMSE_F=   35.73 meV / A
+INFO:root:Epoch 199: head: Default, loss=0.04263647, RMSE_E_per_atom=    1.87 meV, RMSE_F=   35.75 meV / A
+INFO:root:Epoch 200: head: Default, loss=0.04266160, RMSE_E_per_atom=    1.83 meV, RMSE_F=   35.76 meV / A
+INFO:root:Epoch 201: head: Default, loss=0.04272901, RMSE_E_per_atom=    1.85 meV, RMSE_F=   35.79 meV / A
+INFO:root:Epoch 202: head: Default, loss=0.04281652, RMSE_E_per_atom=    1.80 meV, RMSE_F=   35.83 meV / A
+INFO:root:Epoch 203: head: Default, loss=0.04288529, RMSE_E_per_atom=    1.90 meV, RMSE_F=   35.86 meV / A
+INFO:root:Epoch 204: head: Default, loss=0.04289639, RMSE_E_per_atom=    1.75 meV, RMSE_F=   35.86 meV / A
+INFO:root:Epoch 205: head: Default, loss=0.04298024, RMSE_E_per_atom=    1.79 meV, RMSE_F=   35.89 meV / A
+INFO:root:Epoch 206: head: Default, loss=0.04302794, RMSE_E_per_atom=    1.80 meV, RMSE_F=   35.91 meV / A
+INFO:root:Epoch 207: head: Default, loss=0.04304373, RMSE_E_per_atom=    1.86 meV, RMSE_F=   35.92 meV / A
+INFO:root:Epoch 208: head: Default, loss=0.04305400, RMSE_E_per_atom=    1.74 meV, RMSE_F=   35.93 meV / A
+INFO:root:Epoch 209: head: Default, loss=0.04303128, RMSE_E_per_atom=    1.88 meV, RMSE_F=   35.92 meV / A
+INFO:root:Epoch 210: head: Default, loss=0.04309017, RMSE_E_per_atom=    1.91 meV, RMSE_F=   35.94 meV / A
+INFO:root:Epoch 211: head: Default, loss=0.04311981, RMSE_E_per_atom=    1.79 meV, RMSE_F=   35.95 meV / A
+INFO:root:Epoch 212: head: Default, loss=0.04322571, RMSE_E_per_atom=    1.89 meV, RMSE_F=   36.00 meV / A
+INFO:root:Epoch 213: head: Default, loss=0.04316336, RMSE_E_per_atom=    1.80 meV, RMSE_F=   35.97 meV / A
+INFO:root:Epoch 214: head: Default, loss=0.04322508, RMSE_E_per_atom=    1.84 meV, RMSE_F=   36.00 meV / A
+INFO:root:Epoch 215: head: Default, loss=0.04326288, RMSE_E_per_atom=    1.88 meV, RMSE_F=   36.01 meV / A
+INFO:root:Epoch 216: head: Default, loss=0.04332817, RMSE_E_per_atom=    1.78 meV, RMSE_F=   36.04 meV / A
+INFO:root:Epoch 217: head: Default, loss=0.04335749, RMSE_E_per_atom=    1.76 meV, RMSE_F=   36.05 meV / A
+INFO:root:Epoch 218: head: Default, loss=0.04341184, RMSE_E_per_atom=    1.77 meV, RMSE_F=   36.08 meV / A
+INFO:root:Epoch 219: head: Default, loss=0.04343162, RMSE_E_per_atom=    1.76 meV, RMSE_F=   36.08 meV / A
+INFO:root:Epoch 220: head: Default, loss=0.04343986, RMSE_E_per_atom=    1.71 meV, RMSE_F=   36.09 meV / A
+INFO:root:Epoch 221: head: Default, loss=0.04350587, RMSE_E_per_atom=    1.95 meV, RMSE_F=   36.11 meV / A
+INFO:root:Epoch 222: head: Default, loss=0.04351880, RMSE_E_per_atom=    1.78 meV, RMSE_F=   36.12 meV / A
+INFO:root:Epoch 223: head: Default, loss=0.04361096, RMSE_E_per_atom=    1.96 meV, RMSE_F=   36.16 meV / A
+INFO:root:Epoch 224: head: Default, loss=0.04370372, RMSE_E_per_atom=    1.84 meV, RMSE_F=   36.20 meV / A
+INFO:root:Epoch 225: head: Default, loss=0.04380474, RMSE_E_per_atom=    1.83 meV, RMSE_F=   36.24 meV / A
+INFO:root:Epoch 226: head: Default, loss=0.04380056, RMSE_E_per_atom=    1.88 meV, RMSE_F=   36.24 meV / A
+INFO:root:Epoch 227: head: Default, loss=0.04394693, RMSE_E_per_atom=    1.84 meV, RMSE_F=   36.30 meV / A
+INFO:root:Epoch 228: head: Default, loss=0.04400878, RMSE_E_per_atom=    2.01 meV, RMSE_F=   36.32 meV / A
+INFO:root:Epoch 229: head: Default, loss=0.04409845, RMSE_E_per_atom=    1.92 meV, RMSE_F=   36.36 meV / A
+INFO:root:Epoch 230: head: Default, loss=0.04411232, RMSE_E_per_atom=    1.71 meV, RMSE_F=   36.37 meV / A
+INFO:root:Epoch 231: head: Default, loss=0.04414616, RMSE_E_per_atom=    1.81 meV, RMSE_F=   36.38 meV / A
+INFO:root:Epoch 232: head: Default, loss=0.04425913, RMSE_E_per_atom=    1.92 meV, RMSE_F=   36.43 meV / A
+INFO:root:Epoch 233: head: Default, loss=0.04429190, RMSE_E_per_atom=    1.72 meV, RMSE_F=   36.44 meV / A
+INFO:root:Epoch 234: head: Default, loss=0.04445696, RMSE_E_per_atom=    1.89 meV, RMSE_F=   36.51 meV / A
+INFO:root:Epoch 235: head: Default, loss=0.04456890, RMSE_E_per_atom=    1.84 meV, RMSE_F=   36.55 meV / A
+INFO:root:Epoch 236: head: Default, loss=0.04467951, RMSE_E_per_atom=    1.81 meV, RMSE_F=   36.60 meV / A
+INFO:root:Epoch 237: head: Default, loss=0.04469861, RMSE_E_per_atom=    1.87 meV, RMSE_F=   36.61 meV / A
+INFO:root:Epoch 238: head: Default, loss=0.04476804, RMSE_E_per_atom=    1.71 meV, RMSE_F=   36.63 meV / A
+INFO:root:Epoch 239: head: Default, loss=0.04486895, RMSE_E_per_atom=    1.80 meV, RMSE_F=   36.68 meV / A
+INFO:root:Epoch 240: head: Default, loss=0.04490986, RMSE_E_per_atom=    1.85 meV, RMSE_F=   36.69 meV / A
+INFO:root:Epoch 241: head: Default, loss=0.04498158, RMSE_E_per_atom=    1.75 meV, RMSE_F=   36.72 meV / A
+INFO:root:Epoch 242: head: Default, loss=0.04504237, RMSE_E_per_atom=    1.81 meV, RMSE_F=   36.75 meV / A
+INFO:root:Epoch 243: head: Default, loss=0.04510662, RMSE_E_per_atom=    1.73 meV, RMSE_F=   36.77 meV / A
+INFO:root:Epoch 244: head: Default, loss=0.04512441, RMSE_E_per_atom=    1.81 meV, RMSE_F=   36.78 meV / A
+INFO:root:Epoch 245: head: Default, loss=0.04517156, RMSE_E_per_atom=    1.76 meV, RMSE_F=   36.80 meV / A
+INFO:root:Epoch 246: head: Default, loss=0.04523388, RMSE_E_per_atom=    1.71 meV, RMSE_F=   36.83 meV / A
+INFO:root:Epoch 247: head: Default, loss=0.04536435, RMSE_E_per_atom=    1.73 meV, RMSE_F=   36.88 meV / A
+INFO:root:Epoch 248: head: Default, loss=0.04546330, RMSE_E_per_atom=    1.74 meV, RMSE_F=   36.92 meV / A
+INFO:root:Epoch 249: head: Default, loss=0.04546947, RMSE_E_per_atom=    1.67 meV, RMSE_F=   36.92 meV / A
+INFO:root:Epoch 250: head: Default, loss=0.04550966, RMSE_E_per_atom=    1.70 meV, RMSE_F=   36.94 meV / A
+INFO:root:Epoch 251: head: Default, loss=0.04559792, RMSE_E_per_atom=    1.71 meV, RMSE_F=   36.97 meV / A
+INFO:root:Epoch 252: head: Default, loss=0.04563727, RMSE_E_per_atom=    1.70 meV, RMSE_F=   36.99 meV / A
+INFO:root:Epoch 253: head: Default, loss=0.04568031, RMSE_E_per_atom=    1.80 meV, RMSE_F=   37.01 meV / A
+INFO:root:Epoch 254: head: Default, loss=0.04576182, RMSE_E_per_atom=    1.67 meV, RMSE_F=   37.04 meV / A
+INFO:root:Epoch 255: head: Default, loss=0.04585146, RMSE_E_per_atom=    1.76 meV, RMSE_F=   37.08 meV / A
+INFO:root:Epoch 256: head: Default, loss=0.04586070, RMSE_E_per_atom=    1.70 meV, RMSE_F=   37.08 meV / A
+INFO:root:Epoch 257: head: Default, loss=0.04588553, RMSE_E_per_atom=    1.81 meV, RMSE_F=   37.09 meV / A
+INFO:root:Epoch 258: head: Default, loss=0.04599899, RMSE_E_per_atom=    1.68 meV, RMSE_F=   37.14 meV / A
+INFO:root:Epoch 259: head: Default, loss=0.04611334, RMSE_E_per_atom=    1.81 meV, RMSE_F=   37.18 meV / A
+INFO:root:Epoch 260: head: Default, loss=0.04610055, RMSE_E_per_atom=    1.71 meV, RMSE_F=   37.18 meV / A
+INFO:root:Epoch 261: head: Default, loss=0.04623615, RMSE_E_per_atom=    1.77 meV, RMSE_F=   37.23 meV / A
+INFO:root:Epoch 262: head: Default, loss=0.04627117, RMSE_E_per_atom=    1.74 meV, RMSE_F=   37.25 meV / A
+INFO:root:Epoch 263: head: Default, loss=0.04635733, RMSE_E_per_atom=    1.74 meV, RMSE_F=   37.28 meV / A
+INFO:root:Epoch 264: head: Default, loss=0.04640625, RMSE_E_per_atom=    1.69 meV, RMSE_F=   37.30 meV / A
+INFO:root:Epoch 265: head: Default, loss=0.04640492, RMSE_E_per_atom=    1.78 meV, RMSE_F=   37.30 meV / A
+INFO:root:Epoch 266: head: Default, loss=0.04647874, RMSE_E_per_atom=    1.75 meV, RMSE_F=   37.33 meV / A
+INFO:root:Epoch 267: head: Default, loss=0.04656249, RMSE_E_per_atom=    1.75 meV, RMSE_F=   37.36 meV / A
+INFO:root:Epoch 268: head: Default, loss=0.04673741, RMSE_E_per_atom=    1.68 meV, RMSE_F=   37.43 meV / A
+INFO:root:Epoch 269: head: Default, loss=0.04675946, RMSE_E_per_atom=    1.72 meV, RMSE_F=   37.44 meV / A
+INFO:root:Epoch 270: head: Default, loss=0.04679465, RMSE_E_per_atom=    1.75 meV, RMSE_F=   37.46 meV / A
+INFO:root:Epoch 271: head: Default, loss=0.04690167, RMSE_E_per_atom=    1.69 meV, RMSE_F=   37.50 meV / A
+INFO:root:Epoch 272: head: Default, loss=0.04697971, RMSE_E_per_atom=    1.68 meV, RMSE_F=   37.53 meV / A
+INFO:root:Epoch 273: head: Default, loss=0.04698295, RMSE_E_per_atom=    1.69 meV, RMSE_F=   37.53 meV / A
+INFO:root:Epoch 274: head: Default, loss=0.04711481, RMSE_E_per_atom=    1.71 meV, RMSE_F=   37.59 meV / A
+INFO:root:Epoch 275: head: Default, loss=0.04717460, RMSE_E_per_atom=    1.69 meV, RMSE_F=   37.61 meV / A
+INFO:root:Epoch 276: head: Default, loss=0.04725783, RMSE_E_per_atom=    1.69 meV, RMSE_F=   37.64 meV / A
+INFO:root:Epoch 277: head: Default, loss=0.04723477, RMSE_E_per_atom=    1.63 meV, RMSE_F=   37.63 meV / A
+INFO:root:Epoch 278: head: Default, loss=0.04728886, RMSE_E_per_atom=    1.73 meV, RMSE_F=   37.65 meV / A
+INFO:root:Epoch 279: head: Default, loss=0.04735764, RMSE_E_per_atom=    1.68 meV, RMSE_F=   37.68 meV / A
+INFO:root:Epoch 280: head: Default, loss=0.04742369, RMSE_E_per_atom=    1.61 meV, RMSE_F=   37.71 meV / A
+INFO:root:Epoch 281: head: Default, loss=0.04749587, RMSE_E_per_atom=    1.72 meV, RMSE_F=   37.74 meV / A
+INFO:root:Epoch 282: head: Default, loss=0.04756980, RMSE_E_per_atom=    1.67 meV, RMSE_F=   37.77 meV / A
+INFO:root:Epoch 283: head: Default, loss=0.04764018, RMSE_E_per_atom=    1.64 meV, RMSE_F=   37.79 meV / A
+INFO:root:Epoch 284: head: Default, loss=0.04766448, RMSE_E_per_atom=    1.68 meV, RMSE_F=   37.80 meV / A
+INFO:root:Epoch 285: head: Default, loss=0.04778598, RMSE_E_per_atom=    1.65 meV, RMSE_F=   37.85 meV / A
+INFO:root:Epoch 286: head: Default, loss=0.04785176, RMSE_E_per_atom=    1.66 meV, RMSE_F=   37.88 meV / A
+INFO:root:Epoch 287: head: Default, loss=0.04789392, RMSE_E_per_atom=    1.62 meV, RMSE_F=   37.89 meV / A
+INFO:root:Epoch 288: head: Default, loss=0.04790845, RMSE_E_per_atom=    1.65 meV, RMSE_F=   37.90 meV / A
+INFO:root:Epoch 289: head: Default, loss=0.04798129, RMSE_E_per_atom=    1.61 meV, RMSE_F=   37.93 meV / A
+INFO:root:Epoch 290: head: Default, loss=0.04810296, RMSE_E_per_atom=    1.64 meV, RMSE_F=   37.98 meV / A
+INFO:root:Epoch 291: head: Default, loss=0.04822732, RMSE_E_per_atom=    1.58 meV, RMSE_F=   38.03 meV / A
+INFO:root:Epoch 292: head: Default, loss=0.04825262, RMSE_E_per_atom=    1.62 meV, RMSE_F=   38.04 meV / A
+INFO:root:Epoch 293: head: Default, loss=0.04829135, RMSE_E_per_atom=    1.59 meV, RMSE_F=   38.05 meV / A
+INFO:root:Epoch 294: head: Default, loss=0.04840712, RMSE_E_per_atom=    1.62 meV, RMSE_F=   38.10 meV / A
+INFO:root:Epoch 295: head: Default, loss=0.04848920, RMSE_E_per_atom=    1.63 meV, RMSE_F=   38.13 meV / A
+INFO:root:Epoch 296: head: Default, loss=0.04850036, RMSE_E_per_atom=    1.58 meV, RMSE_F=   38.13 meV / A
+INFO:root:Epoch 297: head: Default, loss=0.04852084, RMSE_E_per_atom=    1.64 meV, RMSE_F=   38.14 meV / A
+INFO:root:Epoch 298: head: Default, loss=0.04850889, RMSE_E_per_atom=    1.58 meV, RMSE_F=   38.14 meV / A
+INFO:root:Epoch 299: head: Default, loss=0.04847905, RMSE_E_per_atom=    1.63 meV, RMSE_F=   38.13 meV / A
+INFO:root:Epoch 300: head: Default, loss=0.04855197, RMSE_E_per_atom=    1.65 meV, RMSE_F=   38.16 meV / A
+INFO:root:Epoch 301: head: Default, loss=0.04868075, RMSE_E_per_atom=    1.60 meV, RMSE_F=   38.21 meV / A
+INFO:root:Epoch 302: head: Default, loss=0.04871384, RMSE_E_per_atom=    1.63 meV, RMSE_F=   38.22 meV / A
+INFO:root:Epoch 303: head: Default, loss=0.04875731, RMSE_E_per_atom=    1.61 meV, RMSE_F=   38.24 meV / A
+INFO:root:Epoch 304: head: Default, loss=0.04873864, RMSE_E_per_atom=    1.62 meV, RMSE_F=   38.23 meV / A
+INFO:root:Epoch 305: head: Default, loss=0.04873310, RMSE_E_per_atom=    1.61 meV, RMSE_F=   38.23 meV / A
+INFO:root:Epoch 306: head: Default, loss=0.04877342, RMSE_E_per_atom=    1.60 meV, RMSE_F=   38.24 meV / A
+INFO:root:Epoch 307: head: Default, loss=0.04887196, RMSE_E_per_atom=    1.61 meV, RMSE_F=   38.28 meV / A
+INFO:root:Epoch 308: head: Default, loss=0.04888512, RMSE_E_per_atom=    1.60 meV, RMSE_F=   38.29 meV / A
+INFO:root:Epoch 309: head: Default, loss=0.04897017, RMSE_E_per_atom=    1.59 meV, RMSE_F=   38.32 meV / A
+INFO:root:Epoch 310: head: Default, loss=0.04897943, RMSE_E_per_atom=    1.59 meV, RMSE_F=   38.32 meV / A
+INFO:root:Epoch 311: head: Default, loss=0.04896485, RMSE_E_per_atom=    1.61 meV, RMSE_F=   38.32 meV / A
+INFO:root:Epoch 312: head: Default, loss=0.04900680, RMSE_E_per_atom=    1.61 meV, RMSE_F=   38.33 meV / A
+INFO:root:Epoch 313: head: Default, loss=0.04908758, RMSE_E_per_atom=    1.63 meV, RMSE_F=   38.37 meV / A
+INFO:root:Epoch 314: head: Default, loss=0.04908457, RMSE_E_per_atom=    1.58 meV, RMSE_F=   38.36 meV / A
+INFO:root:Epoch 315: head: Default, loss=0.04914079, RMSE_E_per_atom=    1.62 meV, RMSE_F=   38.39 meV / A
+INFO:root:Epoch 316: head: Default, loss=0.04918057, RMSE_E_per_atom=    1.59 meV, RMSE_F=   38.40 meV / A
+INFO:root:Epoch 317: head: Default, loss=0.04924018, RMSE_E_per_atom=    1.66 meV, RMSE_F=   38.43 meV / A
+INFO:root:Epoch 318: head: Default, loss=0.04922786, RMSE_E_per_atom=    1.58 meV, RMSE_F=   38.42 meV / A
+INFO:root:Epoch 319: head: Default, loss=0.04928643, RMSE_E_per_atom=    1.59 meV, RMSE_F=   38.44 meV / A
+INFO:root:Epoch 320: head: Default, loss=0.04934078, RMSE_E_per_atom=    1.63 meV, RMSE_F=   38.46 meV / A
+INFO:root:Epoch 321: head: Default, loss=0.04936366, RMSE_E_per_atom=    1.58 meV, RMSE_F=   38.47 meV / A
+INFO:root:Epoch 322: head: Default, loss=0.04935942, RMSE_E_per_atom=    1.59 meV, RMSE_F=   38.47 meV / A
+INFO:root:Epoch 323: head: Default, loss=0.04940197, RMSE_E_per_atom=    1.63 meV, RMSE_F=   38.49 meV / A
+INFO:root:Epoch 324: head: Default, loss=0.04943347, RMSE_E_per_atom=    1.57 meV, RMSE_F=   38.50 meV / A
+INFO:root:Epoch 325: head: Default, loss=0.04944076, RMSE_E_per_atom=    1.57 meV, RMSE_F=   38.50 meV / A
+INFO:root:Epoch 326: head: Default, loss=0.04947402, RMSE_E_per_atom=    1.58 meV, RMSE_F=   38.52 meV / A
+INFO:root:Epoch 327: head: Default, loss=0.04952831, RMSE_E_per_atom=    1.60 meV, RMSE_F=   38.54 meV / A
+INFO:root:Epoch 328: head: Default, loss=0.04947536, RMSE_E_per_atom=    1.58 meV, RMSE_F=   38.52 meV / A
+INFO:root:Epoch 329: head: Default, loss=0.04951163, RMSE_E_per_atom=    1.59 meV, RMSE_F=   38.53 meV / A
+INFO:root:Epoch 330: head: Default, loss=0.04952392, RMSE_E_per_atom=    1.60 meV, RMSE_F=   38.54 meV / A
+INFO:root:Epoch 331: head: Default, loss=0.04958174, RMSE_E_per_atom=    1.56 meV, RMSE_F=   38.56 meV / A
+INFO:root:Epoch 332: head: Default, loss=0.04961462, RMSE_E_per_atom=    1.60 meV, RMSE_F=   38.57 meV / A
+INFO:root:Epoch 333: head: Default, loss=0.04965745, RMSE_E_per_atom=    1.56 meV, RMSE_F=   38.59 meV / A
+INFO:root:Epoch 334: head: Default, loss=0.04968465, RMSE_E_per_atom=    1.59 meV, RMSE_F=   38.60 meV / A
+INFO:root:Epoch 335: head: Default, loss=0.04976080, RMSE_E_per_atom=    1.57 meV, RMSE_F=   38.63 meV / A
+INFO:root:Epoch 336: head: Default, loss=0.04984144, RMSE_E_per_atom=    1.59 meV, RMSE_F=   38.66 meV / A
+INFO:root:Epoch 337: head: Default, loss=0.04988109, RMSE_E_per_atom=    1.55 meV, RMSE_F=   38.68 meV / A
+INFO:root:Epoch 338: head: Default, loss=0.04996860, RMSE_E_per_atom=    1.55 meV, RMSE_F=   38.71 meV / A
+INFO:root:Epoch 339: head: Default, loss=0.05003420, RMSE_E_per_atom=    1.57 meV, RMSE_F=   38.73 meV / A
+INFO:root:Epoch 340: head: Default, loss=0.05013770, RMSE_E_per_atom=    1.56 meV, RMSE_F=   38.77 meV / A
+INFO:root:Epoch 341: head: Default, loss=0.05015814, RMSE_E_per_atom=    1.57 meV, RMSE_F=   38.78 meV / A
+INFO:root:Epoch 342: head: Default, loss=0.05017651, RMSE_E_per_atom=    1.53 meV, RMSE_F=   38.79 meV / A
+INFO:root:Epoch 343: head: Default, loss=0.05019232, RMSE_E_per_atom=    1.55 meV, RMSE_F=   38.80 meV / A
+INFO:root:Epoch 344: head: Default, loss=0.05021330, RMSE_E_per_atom=    1.54 meV, RMSE_F=   38.80 meV / A
+INFO:root:Epoch 345: head: Default, loss=0.05021944, RMSE_E_per_atom=    1.54 meV, RMSE_F=   38.81 meV / A
+INFO:root:Epoch 346: head: Default, loss=0.05024743, RMSE_E_per_atom=    1.55 meV, RMSE_F=   38.82 meV / A
+INFO:root:Epoch 347: head: Default, loss=0.05032889, RMSE_E_per_atom=    1.55 meV, RMSE_F=   38.85 meV / A
+INFO:root:Epoch 348: head: Default, loss=0.05038826, RMSE_E_per_atom=    1.55 meV, RMSE_F=   38.87 meV / A
+INFO:root:Epoch 349: head: Default, loss=0.05041771, RMSE_E_per_atom=    1.54 meV, RMSE_F=   38.88 meV / A
+INFO:root:Epoch 350: head: Default, loss=0.05033782, RMSE_E_per_atom=    1.52 meV, RMSE_F=   38.85 meV / A
+INFO:root:Epoch 351: head: Default, loss=0.05035079, RMSE_E_per_atom=    1.53 meV, RMSE_F=   38.86 meV / A
+INFO:root:Epoch 352: head: Default, loss=0.05043316, RMSE_E_per_atom=    1.57 meV, RMSE_F=   38.89 meV / A
+INFO:root:Epoch 353: head: Default, loss=0.05043144, RMSE_E_per_atom=    1.54 meV, RMSE_F=   38.89 meV / A
+INFO:root:Epoch 354: head: Default, loss=0.05044585, RMSE_E_per_atom=    1.53 meV, RMSE_F=   38.89 meV / A
+INFO:root:Epoch 355: head: Default, loss=0.05046636, RMSE_E_per_atom=    1.55 meV, RMSE_F=   38.90 meV / A
+INFO:root:Epoch 356: head: Default, loss=0.05052690, RMSE_E_per_atom=    1.53 meV, RMSE_F=   38.92 meV / A
+INFO:root:Epoch 357: head: Default, loss=0.05051549, RMSE_E_per_atom=    1.54 meV, RMSE_F=   38.92 meV / A
+INFO:root:Epoch 358: head: Default, loss=0.05051775, RMSE_E_per_atom=    1.54 meV, RMSE_F=   38.92 meV / A
+INFO:root:Epoch 359: head: Default, loss=0.05059036, RMSE_E_per_atom=    1.54 meV, RMSE_F=   38.95 meV / A
+INFO:root:Epoch 360: head: Default, loss=0.05067707, RMSE_E_per_atom=    1.54 meV, RMSE_F=   38.98 meV / A
+INFO:root:Epoch 361: head: Default, loss=0.05074765, RMSE_E_per_atom=    1.53 meV, RMSE_F=   39.01 meV / A
+INFO:root:Epoch 362: head: Default, loss=0.05079961, RMSE_E_per_atom=    1.52 meV, RMSE_F=   39.03 meV / A
+INFO:root:Epoch 363: head: Default, loss=0.05083277, RMSE_E_per_atom=    1.53 meV, RMSE_F=   39.04 meV / A
+INFO:root:Epoch 364: head: Default, loss=0.05085728, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.05 meV / A
+INFO:root:Epoch 365: head: Default, loss=0.05089557, RMSE_E_per_atom=    1.56 meV, RMSE_F=   39.07 meV / A
+INFO:root:Epoch 366: head: Default, loss=0.05089240, RMSE_E_per_atom=    1.53 meV, RMSE_F=   39.07 meV / A
+INFO:root:Epoch 367: head: Default, loss=0.05088728, RMSE_E_per_atom=    1.54 meV, RMSE_F=   39.06 meV / A
+INFO:root:Epoch 368: head: Default, loss=0.05093579, RMSE_E_per_atom=    1.53 meV, RMSE_F=   39.08 meV / A
+INFO:root:Epoch 369: head: Default, loss=0.05097478, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.10 meV / A
+INFO:root:Epoch 370: head: Default, loss=0.05098192, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.10 meV / A
+INFO:root:Epoch 371: head: Default, loss=0.05103967, RMSE_E_per_atom=    1.54 meV, RMSE_F=   39.12 meV / A
+INFO:root:Epoch 372: head: Default, loss=0.05102545, RMSE_E_per_atom=    1.52 meV, RMSE_F=   39.12 meV / A
+INFO:root:Epoch 373: head: Default, loss=0.05104458, RMSE_E_per_atom=    1.53 meV, RMSE_F=   39.12 meV / A
+INFO:root:Epoch 374: head: Default, loss=0.05109766, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.14 meV / A
+INFO:root:Epoch 375: head: Default, loss=0.05109383, RMSE_E_per_atom=    1.52 meV, RMSE_F=   39.14 meV / A
+INFO:root:Epoch 376: head: Default, loss=0.05108580, RMSE_E_per_atom=    1.55 meV, RMSE_F=   39.14 meV / A
+INFO:root:Epoch 377: head: Default, loss=0.05113760, RMSE_E_per_atom=    1.54 meV, RMSE_F=   39.16 meV / A
+INFO:root:Epoch 378: head: Default, loss=0.05113744, RMSE_E_per_atom=    1.53 meV, RMSE_F=   39.16 meV / A
+INFO:root:Epoch 379: head: Default, loss=0.05117602, RMSE_E_per_atom=    1.52 meV, RMSE_F=   39.17 meV / A
+INFO:root:Epoch 380: head: Default, loss=0.05118632, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.18 meV / A
+INFO:root:Epoch 381: head: Default, loss=0.05118782, RMSE_E_per_atom=    1.53 meV, RMSE_F=   39.18 meV / A
+INFO:root:Epoch 382: head: Default, loss=0.05113308, RMSE_E_per_atom=    1.52 meV, RMSE_F=   39.16 meV / A
+INFO:root:Epoch 383: head: Default, loss=0.05118142, RMSE_E_per_atom=    1.53 meV, RMSE_F=   39.18 meV / A
+INFO:root:Epoch 384: head: Default, loss=0.05124456, RMSE_E_per_atom=    1.54 meV, RMSE_F=   39.20 meV / A
+INFO:root:Epoch 385: head: Default, loss=0.05128322, RMSE_E_per_atom=    1.52 meV, RMSE_F=   39.22 meV / A
+INFO:root:Epoch 386: head: Default, loss=0.05132073, RMSE_E_per_atom=    1.53 meV, RMSE_F=   39.23 meV / A
+INFO:root:Epoch 387: head: Default, loss=0.05131400, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.23 meV / A
+INFO:root:Epoch 388: head: Default, loss=0.05134611, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.24 meV / A
+INFO:root:Epoch 389: head: Default, loss=0.05136214, RMSE_E_per_atom=    1.52 meV, RMSE_F=   39.25 meV / A
+INFO:root:Epoch 390: head: Default, loss=0.05139819, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.26 meV / A
+INFO:root:Epoch 391: head: Default, loss=0.05143208, RMSE_E_per_atom=    1.52 meV, RMSE_F=   39.27 meV / A
+INFO:root:Epoch 392: head: Default, loss=0.05149832, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.30 meV / A
+INFO:root:Epoch 393: head: Default, loss=0.05154729, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.32 meV / A
+INFO:root:Epoch 394: head: Default, loss=0.05159433, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.33 meV / A
+INFO:root:Epoch 395: head: Default, loss=0.05158916, RMSE_E_per_atom=    1.52 meV, RMSE_F=   39.33 meV / A
+INFO:root:Epoch 396: head: Default, loss=0.05166135, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.36 meV / A
+INFO:root:Epoch 397: head: Default, loss=0.05166705, RMSE_E_per_atom=    1.52 meV, RMSE_F=   39.36 meV / A
+INFO:root:Epoch 398: head: Default, loss=0.05170004, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.37 meV / A
+INFO:root:Epoch 399: head: Default, loss=0.05170320, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.38 meV / A
+INFO:root:Epoch 400: head: Default, loss=0.05173469, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.39 meV / A
+INFO:root:Epoch 401: head: Default, loss=0.05175521, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.40 meV / A
+INFO:root:Epoch 402: head: Default, loss=0.05173759, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.39 meV / A
+INFO:root:Epoch 403: head: Default, loss=0.05178410, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.41 meV / A
+INFO:root:Epoch 404: head: Default, loss=0.05183358, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.43 meV / A
+INFO:root:Epoch 405: head: Default, loss=0.05188965, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.45 meV / A
+INFO:root:Epoch 406: head: Default, loss=0.05191181, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.46 meV / A
+INFO:root:Epoch 407: head: Default, loss=0.05194679, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.47 meV / A
+INFO:root:Epoch 408: head: Default, loss=0.05196607, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.48 meV / A
+INFO:root:Epoch 409: head: Default, loss=0.05197554, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.48 meV / A
+INFO:root:Epoch 410: head: Default, loss=0.05198923, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.48 meV / A
+INFO:root:Epoch 411: head: Default, loss=0.05199360, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.49 meV / A
+INFO:root:Epoch 412: head: Default, loss=0.05200925, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.49 meV / A
+INFO:root:Epoch 413: head: Default, loss=0.05203963, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.50 meV / A
+INFO:root:Epoch 414: head: Default, loss=0.05205022, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.51 meV / A
+INFO:root:Epoch 415: head: Default, loss=0.05208011, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.52 meV / A
+INFO:root:Epoch 416: head: Default, loss=0.05206346, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.51 meV / A
+INFO:root:Epoch 417: head: Default, loss=0.05206680, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.51 meV / A
+INFO:root:Epoch 418: head: Default, loss=0.05207384, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.52 meV / A
+INFO:root:Epoch 419: head: Default, loss=0.05212219, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.54 meV / A
+INFO:root:Epoch 420: head: Default, loss=0.05216413, RMSE_E_per_atom=    1.51 meV, RMSE_F=   39.55 meV / A
+INFO:root:Epoch 421: head: Default, loss=0.05219483, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.56 meV / A
+INFO:root:Epoch 422: head: Default, loss=0.05224580, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.58 meV / A
+INFO:root:Epoch 423: head: Default, loss=0.05231481, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.61 meV / A
+INFO:root:Epoch 424: head: Default, loss=0.05234710, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.62 meV / A
+INFO:root:Epoch 425: head: Default, loss=0.05234903, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.62 meV / A
+INFO:root:Epoch 426: head: Default, loss=0.05233598, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.62 meV / A
+INFO:root:Epoch 427: head: Default, loss=0.05234802, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.62 meV / A
+INFO:root:Epoch 428: head: Default, loss=0.05241774, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.65 meV / A
+INFO:root:Epoch 429: head: Default, loss=0.05246915, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.67 meV / A
+INFO:root:Epoch 430: head: Default, loss=0.05247037, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.67 meV / A
+INFO:root:Epoch 431: head: Default, loss=0.05245758, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.66 meV / A
+INFO:root:Epoch 432: head: Default, loss=0.05244724, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.66 meV / A
+INFO:root:Epoch 433: head: Default, loss=0.05248979, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.67 meV / A
+INFO:root:Epoch 434: head: Default, loss=0.05250914, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.68 meV / A
+INFO:root:Epoch 435: head: Default, loss=0.05254506, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.70 meV / A
+INFO:root:Epoch 436: head: Default, loss=0.05255896, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.70 meV / A
+INFO:root:Epoch 437: head: Default, loss=0.05254474, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.70 meV / A
+INFO:root:Epoch 438: head: Default, loss=0.05260131, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.72 meV / A
+INFO:root:Epoch 439: head: Default, loss=0.05264099, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.73 meV / A
+INFO:root:Epoch 440: head: Default, loss=0.05267907, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.75 meV / A
+INFO:root:Epoch 441: head: Default, loss=0.05268202, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.75 meV / A
+INFO:root:Epoch 442: head: Default, loss=0.05271506, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.76 meV / A
+INFO:root:Epoch 443: head: Default, loss=0.05273449, RMSE_E_per_atom=    1.50 meV, RMSE_F=   39.77 meV / A
+INFO:root:Epoch 444: head: Default, loss=0.05276940, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.78 meV / A
+INFO:root:Epoch 445: head: Default, loss=0.05276091, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.78 meV / A
+INFO:root:Epoch 446: head: Default, loss=0.05277091, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.78 meV / A
+INFO:root:Epoch 447: head: Default, loss=0.05282882, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.80 meV / A
+INFO:root:Epoch 448: head: Default, loss=0.05285160, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.81 meV / A
+INFO:root:Epoch 449: head: Default, loss=0.05286848, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.82 meV / A
+INFO:root:Epoch 450: head: Default, loss=0.05289972, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.83 meV / A
+INFO:root:Epoch 451: head: Default, loss=0.05293688, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.84 meV / A
+INFO:root:Epoch 452: head: Default, loss=0.05292956, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.84 meV / A
+INFO:root:Epoch 453: head: Default, loss=0.05293904, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.84 meV / A
+INFO:root:Epoch 454: head: Default, loss=0.05296286, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.85 meV / A
+INFO:root:Epoch 455: head: Default, loss=0.05301310, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.87 meV / A
+INFO:root:Epoch 456: head: Default, loss=0.05301045, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.87 meV / A
+INFO:root:Epoch 457: head: Default, loss=0.05304199, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.88 meV / A
+INFO:root:Epoch 458: head: Default, loss=0.05310050, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.91 meV / A
+INFO:root:Epoch 459: head: Default, loss=0.05309459, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.90 meV / A
+INFO:root:Epoch 460: head: Default, loss=0.05310734, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.91 meV / A
+INFO:root:Epoch 461: head: Default, loss=0.05309030, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.90 meV / A
+INFO:root:Epoch 462: head: Default, loss=0.05311184, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.91 meV / A
+INFO:root:Epoch 463: head: Default, loss=0.05310321, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.91 meV / A
+INFO:root:Epoch 464: head: Default, loss=0.05316948, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.93 meV / A
+INFO:root:Epoch 465: head: Default, loss=0.05315615, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.93 meV / A
+INFO:root:Epoch 466: head: Default, loss=0.05318961, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.94 meV / A
+INFO:root:Epoch 467: head: Default, loss=0.05322370, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.95 meV / A
+INFO:root:Epoch 468: head: Default, loss=0.05320139, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.94 meV / A
+INFO:root:Epoch 469: head: Default, loss=0.05321837, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.95 meV / A
+INFO:root:Epoch 470: head: Default, loss=0.05324051, RMSE_E_per_atom=    1.49 meV, RMSE_F=   39.96 meV / A
+INFO:root:Epoch 471: head: Default, loss=0.05327223, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.97 meV / A
+INFO:root:Epoch 472: head: Default, loss=0.05330716, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.98 meV / A
+INFO:root:Epoch 473: head: Default, loss=0.05330106, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.98 meV / A
+INFO:root:Epoch 474: head: Default, loss=0.05333450, RMSE_E_per_atom=    1.48 meV, RMSE_F=   39.99 meV / A
+INFO:root:Epoch 475: head: Default, loss=0.05337331, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.01 meV / A
+INFO:root:Epoch 476: head: Default, loss=0.05336077, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.00 meV / A
+INFO:root:Epoch 477: head: Default, loss=0.05334212, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.00 meV / A
+INFO:root:Epoch 478: head: Default, loss=0.05339833, RMSE_E_per_atom=    1.49 meV, RMSE_F=   40.02 meV / A
+INFO:root:Epoch 479: head: Default, loss=0.05342259, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.03 meV / A
+INFO:root:Epoch 480: head: Default, loss=0.05342800, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.03 meV / A
+INFO:root:Epoch 481: head: Default, loss=0.05345118, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.04 meV / A
+INFO:root:Epoch 482: head: Default, loss=0.05345615, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.04 meV / A
+INFO:root:Epoch 483: head: Default, loss=0.05345859, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.04 meV / A
+INFO:root:Epoch 484: head: Default, loss=0.05346811, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.04 meV / A
+INFO:root:Epoch 485: head: Default, loss=0.05349863, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.05 meV / A
+INFO:root:Epoch 486: head: Default, loss=0.05352386, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.06 meV / A
+INFO:root:Epoch 487: head: Default, loss=0.05353494, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.07 meV / A
+INFO:root:Epoch 488: head: Default, loss=0.05357094, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.08 meV / A
+INFO:root:Epoch 489: head: Default, loss=0.05363282, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.10 meV / A
+INFO:root:Epoch 490: head: Default, loss=0.05365838, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.11 meV / A
+INFO:root:Epoch 491: head: Default, loss=0.05368530, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.12 meV / A
+INFO:root:Epoch 492: head: Default, loss=0.05371137, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.13 meV / A
+INFO:root:Epoch 493: head: Default, loss=0.05371703, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.14 meV / A
+INFO:root:Epoch 494: head: Default, loss=0.05375576, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.15 meV / A
+INFO:root:Epoch 495: head: Default, loss=0.05377346, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.16 meV / A
+INFO:root:Epoch 496: head: Default, loss=0.05377006, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.16 meV / A
+INFO:root:Epoch 497: head: Default, loss=0.05377206, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.16 meV / A
+INFO:root:Epoch 498: head: Default, loss=0.05379490, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.17 meV / A
+INFO:root:Epoch 499: head: Default, loss=0.05381037, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.17 meV / A
+INFO:root:Epoch 500: head: Default, loss=0.05382292, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.18 meV / A
+INFO:root:Epoch 501: head: Default, loss=0.05382977, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.18 meV / A
+INFO:root:Epoch 502: head: Default, loss=0.05387187, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.19 meV / A
+INFO:root:Epoch 503: head: Default, loss=0.05386770, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.19 meV / A
+INFO:root:Epoch 504: head: Default, loss=0.05390048, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.20 meV / A
+INFO:root:Epoch 505: head: Default, loss=0.05392012, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.21 meV / A
+INFO:root:Epoch 506: head: Default, loss=0.05395441, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.23 meV / A
+INFO:root:Epoch 507: head: Default, loss=0.05397962, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.23 meV / A
+INFO:root:Epoch 508: head: Default, loss=0.05399922, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.24 meV / A
+INFO:root:Epoch 509: head: Default, loss=0.05400456, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.24 meV / A
+INFO:root:Epoch 510: head: Default, loss=0.05402580, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.25 meV / A
+INFO:root:Epoch 511: head: Default, loss=0.05404474, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.26 meV / A
+INFO:root:Epoch 512: head: Default, loss=0.05404389, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.26 meV / A
+INFO:root:Epoch 513: head: Default, loss=0.05403787, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.26 meV / A
+INFO:root:Epoch 514: head: Default, loss=0.05405964, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.26 meV / A
+INFO:root:Epoch 515: head: Default, loss=0.05407978, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.27 meV / A
+INFO:root:Epoch 516: head: Default, loss=0.05410712, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.28 meV / A
+INFO:root:Epoch 517: head: Default, loss=0.05412863, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.29 meV / A
+INFO:root:Epoch 518: head: Default, loss=0.05414426, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.30 meV / A
+INFO:root:Epoch 519: head: Default, loss=0.05414496, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.30 meV / A
+INFO:root:Epoch 520: head: Default, loss=0.05419103, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.31 meV / A
+INFO:root:Epoch 521: head: Default, loss=0.05419538, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.31 meV / A
+INFO:root:Epoch 522: head: Default, loss=0.05420292, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.32 meV / A
+INFO:root:Epoch 523: head: Default, loss=0.05422254, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.33 meV / A
+INFO:root:Epoch 524: head: Default, loss=0.05423789, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.33 meV / A
+INFO:root:Epoch 525: head: Default, loss=0.05427355, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.34 meV / A
+INFO:root:Epoch 526: head: Default, loss=0.05427484, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.34 meV / A
+INFO:root:Epoch 527: head: Default, loss=0.05428266, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.35 meV / A
+INFO:root:Epoch 528: head: Default, loss=0.05426382, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.34 meV / A
+INFO:root:Epoch 529: head: Default, loss=0.05428256, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.35 meV / A
+INFO:root:Epoch 530: head: Default, loss=0.05429354, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.35 meV / A
+INFO:root:Epoch 531: head: Default, loss=0.05429109, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.35 meV / A
+INFO:root:Epoch 532: head: Default, loss=0.05431119, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.36 meV / A
+INFO:root:Epoch 533: head: Default, loss=0.05433233, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.37 meV / A
+INFO:root:Epoch 534: head: Default, loss=0.05434912, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.37 meV / A
+INFO:root:Epoch 535: head: Default, loss=0.05436652, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.38 meV / A
+INFO:root:Epoch 536: head: Default, loss=0.05440030, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.39 meV / A
+INFO:root:Epoch 537: head: Default, loss=0.05439810, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.39 meV / A
+INFO:root:Epoch 538: head: Default, loss=0.05443577, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.40 meV / A
+INFO:root:Epoch 539: head: Default, loss=0.05444306, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.41 meV / A
+INFO:root:Epoch 540: head: Default, loss=0.05443726, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.40 meV / A
+INFO:root:Epoch 541: head: Default, loss=0.05444088, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.41 meV / A
+INFO:root:Epoch 542: head: Default, loss=0.05445104, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.41 meV / A
+INFO:root:Epoch 543: head: Default, loss=0.05448500, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.42 meV / A
+INFO:root:Epoch 544: head: Default, loss=0.05450989, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.43 meV / A
+INFO:root:Epoch 545: head: Default, loss=0.05451001, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.43 meV / A
+INFO:root:Epoch 546: head: Default, loss=0.05451818, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.43 meV / A
+INFO:root:Epoch 547: head: Default, loss=0.05453696, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.44 meV / A
+INFO:root:Epoch 548: head: Default, loss=0.05454850, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.45 meV / A
+INFO:root:Epoch 549: head: Default, loss=0.05457475, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.46 meV / A
+INFO:root:Epoch 550: head: Default, loss=0.05456838, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.45 meV / A
+INFO:root:Epoch 551: head: Default, loss=0.05458762, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.46 meV / A
+INFO:root:Epoch 552: head: Default, loss=0.05462139, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.47 meV / A
+INFO:root:Epoch 553: head: Default, loss=0.05464372, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.48 meV / A
+INFO:root:Epoch 554: head: Default, loss=0.05464903, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.48 meV / A
+INFO:root:Epoch 555: head: Default, loss=0.05466906, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.49 meV / A
+INFO:root:Epoch 556: head: Default, loss=0.05466983, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.49 meV / A
+INFO:root:Epoch 557: head: Default, loss=0.05468321, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.50 meV / A
+INFO:root:Epoch 558: head: Default, loss=0.05470510, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.50 meV / A
+INFO:root:Epoch 559: head: Default, loss=0.05470735, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.51 meV / A
+INFO:root:Epoch 560: head: Default, loss=0.05471749, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.51 meV / A
+INFO:root:Epoch 561: head: Default, loss=0.05472878, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.51 meV / A
+INFO:root:Epoch 562: head: Default, loss=0.05475065, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.52 meV / A
+INFO:root:Epoch 563: head: Default, loss=0.05477019, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.53 meV / A
+INFO:root:Epoch 564: head: Default, loss=0.05478452, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.53 meV / A
+INFO:root:Epoch 565: head: Default, loss=0.05480514, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.54 meV / A
+INFO:root:Epoch 566: head: Default, loss=0.05481188, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.54 meV / A
+INFO:root:Epoch 567: head: Default, loss=0.05483435, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.55 meV / A
+INFO:root:Epoch 568: head: Default, loss=0.05485345, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.56 meV / A
+INFO:root:Epoch 569: head: Default, loss=0.05486134, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.56 meV / A
+INFO:root:Epoch 570: head: Default, loss=0.05489571, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.57 meV / A
+INFO:root:Epoch 571: head: Default, loss=0.05489503, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.57 meV / A
+INFO:root:Epoch 572: head: Default, loss=0.05489438, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.57 meV / A
+INFO:root:Epoch 573: head: Default, loss=0.05490794, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.58 meV / A
+INFO:root:Epoch 574: head: Default, loss=0.05493863, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.59 meV / A
+INFO:root:Epoch 575: head: Default, loss=0.05496725, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.60 meV / A
+INFO:root:Epoch 576: head: Default, loss=0.05495336, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.60 meV / A
+INFO:root:Epoch 577: head: Default, loss=0.05497210, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.60 meV / A
+INFO:root:Epoch 578: head: Default, loss=0.05498408, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.61 meV / A
+INFO:root:Epoch 579: head: Default, loss=0.05499071, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.61 meV / A
+INFO:root:Epoch 580: head: Default, loss=0.05501095, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.62 meV / A
+INFO:root:Epoch 581: head: Default, loss=0.05501841, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.62 meV / A
+INFO:root:Epoch 582: head: Default, loss=0.05502640, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.62 meV / A
+INFO:root:Epoch 583: head: Default, loss=0.05501699, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.62 meV / A
+INFO:root:Epoch 584: head: Default, loss=0.05502626, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.62 meV / A
+INFO:root:Epoch 585: head: Default, loss=0.05504242, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.63 meV / A
+INFO:root:Epoch 586: head: Default, loss=0.05507226, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.64 meV / A
+INFO:root:Epoch 587: head: Default, loss=0.05508675, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.65 meV / A
+INFO:root:Epoch 588: head: Default, loss=0.05510934, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.65 meV / A
+INFO:root:Epoch 589: head: Default, loss=0.05513216, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.66 meV / A
+INFO:root:Epoch 590: head: Default, loss=0.05512329, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.66 meV / A
+INFO:root:Epoch 591: head: Default, loss=0.05514270, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.67 meV / A
+INFO:root:Epoch 592: head: Default, loss=0.05516410, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.67 meV / A
+INFO:root:Epoch 593: head: Default, loss=0.05517223, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.68 meV / A
+INFO:root:Epoch 594: head: Default, loss=0.05516905, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.68 meV / A
+INFO:root:Epoch 595: head: Default, loss=0.05517395, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.68 meV / A
+INFO:root:Epoch 596: head: Default, loss=0.05518805, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.68 meV / A
+INFO:root:Epoch 597: head: Default, loss=0.05520164, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.69 meV / A
+INFO:root:Epoch 598: head: Default, loss=0.05520781, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.69 meV / A
+INFO:root:Epoch 599: head: Default, loss=0.05521773, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.69 meV / A
+INFO:root:Changing loss based on Stage Two Weights
+INFO:root:Epoch 600: head: Default, loss=0.05594575, RMSE_E_per_atom=    1.48 meV, RMSE_F=   40.70 meV / A
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-600_swa.pt
+INFO:root:Epoch 601: head: Default, loss=0.05596638, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.71 meV / A
+INFO:root:Epoch 602: head: Default, loss=0.05596922, RMSE_E_per_atom=    1.46 meV, RMSE_F=   40.71 meV / A
+INFO:root:Epoch 603: head: Default, loss=0.05596450, RMSE_E_per_atom=    1.46 meV, RMSE_F=   40.71 meV / A
+INFO:root:Epoch 604: head: Default, loss=0.05593878, RMSE_E_per_atom=    1.46 meV, RMSE_F=   40.70 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-600_swa.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-604_swa.pt
+INFO:root:Epoch 605: head: Default, loss=0.05593420, RMSE_E_per_atom=    1.46 meV, RMSE_F=   40.70 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-604_swa.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-605_swa.pt
+INFO:root:Epoch 606: head: Default, loss=0.05593611, RMSE_E_per_atom=    1.46 meV, RMSE_F=   40.70 meV / A
+INFO:root:Epoch 607: head: Default, loss=0.05589543, RMSE_E_per_atom=    1.45 meV, RMSE_F=   40.69 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-605_swa.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-607_swa.pt
+INFO:root:Epoch 608: head: Default, loss=0.05587213, RMSE_E_per_atom=    1.45 meV, RMSE_F=   40.68 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-607_swa.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-608_swa.pt
+INFO:root:Epoch 609: head: Default, loss=0.05587858, RMSE_E_per_atom=    1.45 meV, RMSE_F=   40.69 meV / A
+INFO:root:Epoch 610: head: Default, loss=0.05589931, RMSE_E_per_atom=    1.47 meV, RMSE_F=   40.69 meV / A
+INFO:root:Epoch 611: head: Default, loss=0.05586421, RMSE_E_per_atom=    1.45 meV, RMSE_F=   40.68 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-608_swa.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-611_swa.pt
+INFO:root:Epoch 612: head: Default, loss=0.05585428, RMSE_E_per_atom=    1.44 meV, RMSE_F=   40.68 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-611_swa.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-612_swa.pt
+INFO:root:Epoch 613: head: Default, loss=0.05583719, RMSE_E_per_atom=    1.43 meV, RMSE_F=   40.68 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-612_swa.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-613_swa.pt
+INFO:root:Epoch 614: head: Default, loss=0.05581033, RMSE_E_per_atom=    1.43 meV, RMSE_F=   40.67 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-613_swa.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-614_swa.pt
+INFO:root:Epoch 615: head: Default, loss=0.05580192, RMSE_E_per_atom=    1.43 meV, RMSE_F=   40.67 meV / A
+DEBUG:root:Deleting old checkpoint file: ./checkpoints/MACE_model_electrostatics_run-123_epoch-614_swa.pt
+DEBUG:root:Saving checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-615_swa.pt
+INFO:root:Epoch 616: head: Default, loss=0.05580754, RMSE_E_per_atom=    1.42 meV, RMSE_F=   40.67 meV / A
+INFO:root:Epoch 617: head: Default, loss=0.05580858, RMSE_E_per_atom=    1.43 meV, RMSE_F=   40.67 meV / A
+INFO:root:Epoch 618: head: Default, loss=0.05580844, RMSE_E_per_atom=    1.42 meV, RMSE_F=   40.67 meV / A
+INFO:root:Epoch 619: head: Default, loss=0.05582711, RMSE_E_per_atom=    1.41 meV, RMSE_F=   40.68 meV / A
+INFO:root:Epoch 620: head: Default, loss=0.05583480, RMSE_E_per_atom=    1.41 meV, RMSE_F=   40.68 meV / A
+INFO:root:Epoch 621: head: Default, loss=0.05586353, RMSE_E_per_atom=    1.42 meV, RMSE_F=   40.69 meV / A
+INFO:root:Epoch 622: head: Default, loss=0.05587240, RMSE_E_per_atom=    1.42 meV, RMSE_F=   40.69 meV / A
+INFO:root:Epoch 623: head: Default, loss=0.05589660, RMSE_E_per_atom=    1.42 meV, RMSE_F=   40.70 meV / A
+INFO:root:Epoch 624: head: Default, loss=0.05587533, RMSE_E_per_atom=    1.40 meV, RMSE_F=   40.70 meV / A
+INFO:root:Epoch 625: head: Default, loss=0.05588893, RMSE_E_per_atom=    1.40 meV, RMSE_F=   40.71 meV / A
+INFO:root:Epoch 626: head: Default, loss=0.05589586, RMSE_E_per_atom=    1.39 meV, RMSE_F=   40.71 meV / A
+INFO:root:Epoch 627: head: Default, loss=0.05590153, RMSE_E_per_atom=    1.39 meV, RMSE_F=   40.72 meV / A
+INFO:root:Epoch 628: head: Default, loss=0.05590460, RMSE_E_per_atom=    1.38 meV, RMSE_F=   40.72 meV / A
+INFO:root:Epoch 629: head: Default, loss=0.05591151, RMSE_E_per_atom=    1.37 meV, RMSE_F=   40.72 meV / A
+INFO:root:Epoch 630: head: Default, loss=0.05591871, RMSE_E_per_atom=    1.38 meV, RMSE_F=   40.73 meV / A
+INFO:root:Epoch 631: head: Default, loss=0.05592549, RMSE_E_per_atom=    1.37 meV, RMSE_F=   40.73 meV / A
+INFO:root:Epoch 632: head: Default, loss=0.05593392, RMSE_E_per_atom=    1.39 meV, RMSE_F=   40.73 meV / A
+INFO:root:Epoch 633: head: Default, loss=0.05591267, RMSE_E_per_atom=    1.37 meV, RMSE_F=   40.73 meV / A
+INFO:root:Epoch 634: head: Default, loss=0.05590306, RMSE_E_per_atom=    1.37 meV, RMSE_F=   40.72 meV / A
+INFO:root:Epoch 635: head: Default, loss=0.05591329, RMSE_E_per_atom=    1.37 meV, RMSE_F=   40.73 meV / A
+INFO:root:Epoch 636: head: Default, loss=0.05592235, RMSE_E_per_atom=    1.36 meV, RMSE_F=   40.73 meV / A
+INFO:root:Epoch 637: head: Default, loss=0.05594530, RMSE_E_per_atom=    1.36 meV, RMSE_F=   40.74 meV / A
+INFO:root:Epoch 638: head: Default, loss=0.05595899, RMSE_E_per_atom=    1.36 meV, RMSE_F=   40.75 meV / A
+INFO:root:Epoch 639: head: Default, loss=0.05595852, RMSE_E_per_atom=    1.35 meV, RMSE_F=   40.75 meV / A
+INFO:root:Epoch 640: head: Default, loss=0.05595754, RMSE_E_per_atom=    1.35 meV, RMSE_F=   40.75 meV / A
+INFO:root:Epoch 641: head: Default, loss=0.05597924, RMSE_E_per_atom=    1.36 meV, RMSE_F=   40.75 meV / A
+INFO:root:Epoch 642: head: Default, loss=0.05598667, RMSE_E_per_atom=    1.35 meV, RMSE_F=   40.76 meV / A
+INFO:root:Epoch 643: head: Default, loss=0.05600042, RMSE_E_per_atom=    1.36 meV, RMSE_F=   40.76 meV / A
+INFO:root:Epoch 644: head: Default, loss=0.05601999, RMSE_E_per_atom=    1.36 meV, RMSE_F=   40.77 meV / A
+INFO:root:Epoch 645: head: Default, loss=0.05602661, RMSE_E_per_atom=    1.36 meV, RMSE_F=   40.77 meV / A
+INFO:root:Epoch 646: head: Default, loss=0.05604975, RMSE_E_per_atom=    1.36 meV, RMSE_F=   40.78 meV / A
+INFO:root:Epoch 647: head: Default, loss=0.05606832, RMSE_E_per_atom=    1.34 meV, RMSE_F=   40.79 meV / A
+INFO:root:Epoch 648: head: Default, loss=0.05607293, RMSE_E_per_atom=    1.33 meV, RMSE_F=   40.80 meV / A
+INFO:root:Epoch 649: head: Default, loss=0.05609874, RMSE_E_per_atom=    1.33 meV, RMSE_F=   40.81 meV / A
+INFO:root:Epoch 650: head: Default, loss=0.05611979, RMSE_E_per_atom=    1.32 meV, RMSE_F=   40.82 meV / A
+INFO:root:Epoch 651: head: Default, loss=0.05612808, RMSE_E_per_atom=    1.31 meV, RMSE_F=   40.82 meV / A
+INFO:root:Epoch 652: head: Default, loss=0.05612487, RMSE_E_per_atom=    1.31 meV, RMSE_F=   40.82 meV / A
+INFO:root:Epoch 653: head: Default, loss=0.05613972, RMSE_E_per_atom=    1.31 meV, RMSE_F=   40.83 meV / A
+INFO:root:Epoch 654: head: Default, loss=0.05613729, RMSE_E_per_atom=    1.31 meV, RMSE_F=   40.83 meV / A
+INFO:root:Epoch 655: head: Default, loss=0.05615662, RMSE_E_per_atom=    1.30 meV, RMSE_F=   40.84 meV / A
+INFO:root:Epoch 656: head: Default, loss=0.05614862, RMSE_E_per_atom=    1.30 meV, RMSE_F=   40.83 meV / A
+INFO:root:Epoch 657: head: Default, loss=0.05616580, RMSE_E_per_atom=    1.30 meV, RMSE_F=   40.84 meV / A
+INFO:root:Epoch 658: head: Default, loss=0.05616452, RMSE_E_per_atom=    1.31 meV, RMSE_F=   40.84 meV / A
+INFO:root:Epoch 659: head: Default, loss=0.05617420, RMSE_E_per_atom=    1.32 meV, RMSE_F=   40.84 meV / A
+INFO:root:Epoch 660: head: Default, loss=0.05618770, RMSE_E_per_atom=    1.33 meV, RMSE_F=   40.84 meV / A
+INFO:root:Epoch 661: head: Default, loss=0.05619594, RMSE_E_per_atom=    1.34 meV, RMSE_F=   40.84 meV / A
+INFO:root:Epoch 662: head: Default, loss=0.05620739, RMSE_E_per_atom=    1.34 meV, RMSE_F=   40.84 meV / A
+INFO:root:Epoch 663: head: Default, loss=0.05626580, RMSE_E_per_atom=    1.38 meV, RMSE_F=   40.85 meV / A
+INFO:root:Epoch 664: head: Default, loss=0.05626206, RMSE_E_per_atom=    1.36 meV, RMSE_F=   40.86 meV / A
+INFO:root:Epoch 665: head: Default, loss=0.05627388, RMSE_E_per_atom=    1.36 meV, RMSE_F=   40.86 meV / A
+INFO:root:Epoch 666: head: Default, loss=0.05624800, RMSE_E_per_atom=    1.35 meV, RMSE_F=   40.86 meV / A
+INFO:root:Epoch 667: head: Default, loss=0.05627308, RMSE_E_per_atom=    1.37 meV, RMSE_F=   40.86 meV / A
+INFO:root:Epoch 668: head: Default, loss=0.05626966, RMSE_E_per_atom=    1.37 meV, RMSE_F=   40.86 meV / A
+INFO:root:Epoch 669: head: Default, loss=0.05629180, RMSE_E_per_atom=    1.35 meV, RMSE_F=   40.87 meV / A
+INFO:root:Epoch 670: head: Default, loss=0.05628926, RMSE_E_per_atom=    1.36 meV, RMSE_F=   40.87 meV / A
+INFO:root:Epoch 671: head: Default, loss=0.05630352, RMSE_E_per_atom=    1.34 meV, RMSE_F=   40.88 meV / A
+INFO:root:Epoch 672: head: Default, loss=0.05634159, RMSE_E_per_atom=    1.37 meV, RMSE_F=   40.88 meV / A
+INFO:root:Epoch 673: head: Default, loss=0.05633679, RMSE_E_per_atom=    1.36 meV, RMSE_F=   40.89 meV / A
+INFO:root:Epoch 674: head: Default, loss=0.05635618, RMSE_E_per_atom=    1.36 meV, RMSE_F=   40.89 meV / A
+INFO:root:Epoch 675: head: Default, loss=0.05633711, RMSE_E_per_atom=    1.34 meV, RMSE_F=   40.89 meV / A
+INFO:root:Epoch 676: head: Default, loss=0.05632870, RMSE_E_per_atom=    1.33 meV, RMSE_F=   40.89 meV / A
+INFO:root:Epoch 677: head: Default, loss=0.05635277, RMSE_E_per_atom=    1.36 meV, RMSE_F=   40.89 meV / A
+INFO:root:Epoch 678: head: Default, loss=0.05637292, RMSE_E_per_atom=    1.34 meV, RMSE_F=   40.90 meV / A
+INFO:root:Epoch 679: head: Default, loss=0.05638253, RMSE_E_per_atom=    1.35 meV, RMSE_F=   40.91 meV / A
+INFO:root:Epoch 680: head: Default, loss=0.05638353, RMSE_E_per_atom=    1.33 meV, RMSE_F=   40.91 meV / A
+INFO:root:Epoch 681: head: Default, loss=0.05639541, RMSE_E_per_atom=    1.35 meV, RMSE_F=   40.91 meV / A
+INFO:root:Epoch 682: head: Default, loss=0.05638317, RMSE_E_per_atom=    1.33 meV, RMSE_F=   40.91 meV / A
+INFO:root:Epoch 683: head: Default, loss=0.05638669, RMSE_E_per_atom=    1.32 meV, RMSE_F=   40.92 meV / A
+INFO:root:Epoch 684: head: Default, loss=0.05640074, RMSE_E_per_atom=    1.34 meV, RMSE_F=   40.92 meV / A
+INFO:root:Epoch 685: head: Default, loss=0.05641957, RMSE_E_per_atom=    1.33 meV, RMSE_F=   40.92 meV / A
+INFO:root:Epoch 686: head: Default, loss=0.05640631, RMSE_E_per_atom=    1.30 meV, RMSE_F=   40.93 meV / A
+INFO:root:Epoch 687: head: Default, loss=0.05644073, RMSE_E_per_atom=    1.33 meV, RMSE_F=   40.93 meV / A
+INFO:root:Epoch 688: head: Default, loss=0.05645349, RMSE_E_per_atom=    1.32 meV, RMSE_F=   40.94 meV / A
+INFO:root:Epoch 689: head: Default, loss=0.05644572, RMSE_E_per_atom=    1.30 meV, RMSE_F=   40.95 meV / A
+INFO:root:Epoch 690: head: Default, loss=0.05646944, RMSE_E_per_atom=    1.30 meV, RMSE_F=   40.95 meV / A
+INFO:root:Epoch 691: head: Default, loss=0.05648191, RMSE_E_per_atom=    1.31 meV, RMSE_F=   40.95 meV / A
+INFO:root:Epoch 692: head: Default, loss=0.05650573, RMSE_E_per_atom=    1.30 meV, RMSE_F=   40.97 meV / A
+INFO:root:Epoch 693: head: Default, loss=0.05649120, RMSE_E_per_atom=    1.28 meV, RMSE_F=   40.97 meV / A
+INFO:root:Epoch 694: head: Default, loss=0.05651630, RMSE_E_per_atom=    1.27 meV, RMSE_F=   40.98 meV / A
+INFO:root:Epoch 695: head: Default, loss=0.05653425, RMSE_E_per_atom=    1.27 meV, RMSE_F=   40.99 meV / A
+INFO:root:Epoch 696: head: Default, loss=0.05652355, RMSE_E_per_atom=    1.26 meV, RMSE_F=   40.99 meV / A
+INFO:root:Epoch 697: head: Default, loss=0.05652111, RMSE_E_per_atom=    1.26 meV, RMSE_F=   40.99 meV / A
+INFO:root:Epoch 698: head: Default, loss=0.05652638, RMSE_E_per_atom=    1.25 meV, RMSE_F=   40.99 meV / A
+INFO:root:Epoch 699: head: Default, loss=0.05651618, RMSE_E_per_atom=    1.25 meV, RMSE_F=   40.99 meV / A
+INFO:root:Epoch 700: head: Default, loss=0.05652550, RMSE_E_per_atom=    1.25 meV, RMSE_F=   40.99 meV / A
+INFO:root:Epoch 701: head: Default, loss=0.05654579, RMSE_E_per_atom=    1.25 meV, RMSE_F=   41.00 meV / A
+INFO:root:Epoch 702: head: Default, loss=0.05655447, RMSE_E_per_atom=    1.25 meV, RMSE_F=   41.00 meV / A
+INFO:root:Epoch 703: head: Default, loss=0.05654884, RMSE_E_per_atom=    1.26 meV, RMSE_F=   41.00 meV / A
+INFO:root:Epoch 704: head: Default, loss=0.05654564, RMSE_E_per_atom=    1.25 meV, RMSE_F=   41.00 meV / A
+INFO:root:Epoch 705: head: Default, loss=0.05651934, RMSE_E_per_atom=    1.25 meV, RMSE_F=   40.99 meV / A
+INFO:root:Epoch 706: head: Default, loss=0.05651962, RMSE_E_per_atom=    1.25 meV, RMSE_F=   40.99 meV / A
+INFO:root:Epoch 707: head: Default, loss=0.05651758, RMSE_E_per_atom=    1.25 meV, RMSE_F=   40.99 meV / A
+INFO:root:Epoch 708: head: Default, loss=0.05653668, RMSE_E_per_atom=    1.25 meV, RMSE_F=   40.99 meV / A
+INFO:root:Epoch 709: head: Default, loss=0.05656534, RMSE_E_per_atom=    1.25 meV, RMSE_F=   41.01 meV / A
+INFO:root:Epoch 710: head: Default, loss=0.05658566, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.01 meV / A
+INFO:root:Epoch 711: head: Default, loss=0.05658929, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.02 meV / A
+INFO:root:Epoch 712: head: Default, loss=0.05659170, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.02 meV / A
+INFO:root:Epoch 713: head: Default, loss=0.05658102, RMSE_E_per_atom=    1.23 meV, RMSE_F=   41.01 meV / A
+INFO:root:Epoch 714: head: Default, loss=0.05657326, RMSE_E_per_atom=    1.23 meV, RMSE_F=   41.01 meV / A
+INFO:root:Epoch 715: head: Default, loss=0.05659323, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.02 meV / A
+INFO:root:Epoch 716: head: Default, loss=0.05660962, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.02 meV / A
+INFO:root:Epoch 717: head: Default, loss=0.05660884, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.02 meV / A
+INFO:root:Epoch 718: head: Default, loss=0.05661961, RMSE_E_per_atom=    1.23 meV, RMSE_F=   41.03 meV / A
+INFO:root:Epoch 719: head: Default, loss=0.05661544, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.03 meV / A
+INFO:root:Epoch 720: head: Default, loss=0.05661282, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.02 meV / A
+INFO:root:Epoch 721: head: Default, loss=0.05662914, RMSE_E_per_atom=    1.25 meV, RMSE_F=   41.03 meV / A
+INFO:root:Epoch 722: head: Default, loss=0.05665843, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.04 meV / A
+INFO:root:Epoch 723: head: Default, loss=0.05666996, RMSE_E_per_atom=    1.25 meV, RMSE_F=   41.04 meV / A
+INFO:root:Epoch 724: head: Default, loss=0.05666219, RMSE_E_per_atom=    1.26 meV, RMSE_F=   41.04 meV / A
+INFO:root:Epoch 725: head: Default, loss=0.05668188, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.05 meV / A
+INFO:root:Epoch 726: head: Default, loss=0.05669204, RMSE_E_per_atom=    1.26 meV, RMSE_F=   41.05 meV / A
+INFO:root:Epoch 727: head: Default, loss=0.05673624, RMSE_E_per_atom=    1.26 meV, RMSE_F=   41.06 meV / A
+INFO:root:Epoch 728: head: Default, loss=0.05674236, RMSE_E_per_atom=    1.26 meV, RMSE_F=   41.07 meV / A
+INFO:root:Epoch 729: head: Default, loss=0.05674919, RMSE_E_per_atom=    1.25 meV, RMSE_F=   41.07 meV / A
+INFO:root:Epoch 730: head: Default, loss=0.05675799, RMSE_E_per_atom=    1.25 meV, RMSE_F=   41.08 meV / A
+INFO:root:Epoch 731: head: Default, loss=0.05675833, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.08 meV / A
+INFO:root:Epoch 732: head: Default, loss=0.05675702, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.08 meV / A
+INFO:root:Epoch 733: head: Default, loss=0.05675353, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.08 meV / A
+INFO:root:Epoch 734: head: Default, loss=0.05674732, RMSE_E_per_atom=    1.25 meV, RMSE_F=   41.07 meV / A
+INFO:root:Epoch 735: head: Default, loss=0.05675206, RMSE_E_per_atom=    1.26 meV, RMSE_F=   41.07 meV / A
+INFO:root:Epoch 736: head: Default, loss=0.05675829, RMSE_E_per_atom=    1.25 meV, RMSE_F=   41.08 meV / A
+INFO:root:Epoch 737: head: Default, loss=0.05677470, RMSE_E_per_atom=    1.26 meV, RMSE_F=   41.08 meV / A
+INFO:root:Epoch 738: head: Default, loss=0.05676654, RMSE_E_per_atom=    1.26 meV, RMSE_F=   41.07 meV / A
+INFO:root:Epoch 739: head: Default, loss=0.05676518, RMSE_E_per_atom=    1.25 meV, RMSE_F=   41.08 meV / A
+INFO:root:Epoch 740: head: Default, loss=0.05676362, RMSE_E_per_atom=    1.25 meV, RMSE_F=   41.08 meV / A
+INFO:root:Epoch 741: head: Default, loss=0.05675171, RMSE_E_per_atom=    1.23 meV, RMSE_F=   41.08 meV / A
+INFO:root:Epoch 742: head: Default, loss=0.05674300, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.07 meV / A
+INFO:root:Epoch 743: head: Default, loss=0.05674711, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.07 meV / A
+INFO:root:Epoch 744: head: Default, loss=0.05674419, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.07 meV / A
+INFO:root:Epoch 745: head: Default, loss=0.05673986, RMSE_E_per_atom=    1.25 meV, RMSE_F=   41.07 meV / A
+INFO:root:Epoch 746: head: Default, loss=0.05673887, RMSE_E_per_atom=    1.26 meV, RMSE_F=   41.07 meV / A
+INFO:root:Epoch 747: head: Default, loss=0.05671394, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.06 meV / A
+INFO:root:Epoch 748: head: Default, loss=0.05672758, RMSE_E_per_atom=    1.23 meV, RMSE_F=   41.07 meV / A
+INFO:root:Epoch 749: head: Default, loss=0.05673073, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.07 meV / A
+INFO:root:Epoch 750: head: Default, loss=0.05672630, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.07 meV / A
+INFO:root:Epoch 751: head: Default, loss=0.05672137, RMSE_E_per_atom=    1.23 meV, RMSE_F=   41.07 meV / A
+INFO:root:Epoch 752: head: Default, loss=0.05673826, RMSE_E_per_atom=    1.24 meV, RMSE_F=   41.07 meV / A
+INFO:root:Epoch 753: head: Default, loss=0.05673228, RMSE_E_per_atom=    1.23 meV, RMSE_F=   41.07 meV / A
+INFO:root:Epoch 754: head: Default, loss=0.05674615, RMSE_E_per_atom=    1.23 meV, RMSE_F=   41.08 meV / A
+INFO:root:Epoch 755: head: Default, loss=0.05675592, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.08 meV / A
+INFO:root:Epoch 756: head: Default, loss=0.05677825, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.09 meV / A
+INFO:root:Epoch 757: head: Default, loss=0.05677474, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.09 meV / A
+INFO:root:Epoch 758: head: Default, loss=0.05676991, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.09 meV / A
+INFO:root:Epoch 759: head: Default, loss=0.05677157, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.09 meV / A
+INFO:root:Epoch 760: head: Default, loss=0.05677497, RMSE_E_per_atom=    1.21 meV, RMSE_F=   41.09 meV / A
+INFO:root:Epoch 761: head: Default, loss=0.05679163, RMSE_E_per_atom=    1.21 meV, RMSE_F=   41.10 meV / A
+INFO:root:Epoch 762: head: Default, loss=0.05677856, RMSE_E_per_atom=    1.21 meV, RMSE_F=   41.09 meV / A
+INFO:root:Epoch 763: head: Default, loss=0.05679598, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.10 meV / A
+INFO:root:Epoch 764: head: Default, loss=0.05679591, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.10 meV / A
+INFO:root:Epoch 765: head: Default, loss=0.05680272, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.10 meV / A
+INFO:root:Epoch 766: head: Default, loss=0.05680688, RMSE_E_per_atom=    1.23 meV, RMSE_F=   41.10 meV / A
+INFO:root:Epoch 767: head: Default, loss=0.05683747, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.11 meV / A
+INFO:root:Epoch 768: head: Default, loss=0.05684213, RMSE_E_per_atom=    1.21 meV, RMSE_F=   41.12 meV / A
+INFO:root:Epoch 769: head: Default, loss=0.05685128, RMSE_E_per_atom=    1.21 meV, RMSE_F=   41.12 meV / A
+INFO:root:Epoch 770: head: Default, loss=0.05685923, RMSE_E_per_atom=    1.21 meV, RMSE_F=   41.12 meV / A
+INFO:root:Epoch 771: head: Default, loss=0.05686326, RMSE_E_per_atom=    1.21 meV, RMSE_F=   41.13 meV / A
+INFO:root:Epoch 772: head: Default, loss=0.05686195, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.12 meV / A
+INFO:root:Epoch 773: head: Default, loss=0.05686672, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.12 meV / A
+INFO:root:Epoch 774: head: Default, loss=0.05687571, RMSE_E_per_atom=    1.21 meV, RMSE_F=   41.13 meV / A
+INFO:root:Epoch 775: head: Default, loss=0.05689148, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.13 meV / A
+INFO:root:Epoch 776: head: Default, loss=0.05689240, RMSE_E_per_atom=    1.21 meV, RMSE_F=   41.13 meV / A
+INFO:root:Epoch 777: head: Default, loss=0.05688945, RMSE_E_per_atom=    1.21 meV, RMSE_F=   41.13 meV / A
+INFO:root:Epoch 778: head: Default, loss=0.05690908, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.14 meV / A
+INFO:root:Epoch 779: head: Default, loss=0.05690386, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.14 meV / A
+INFO:root:Epoch 780: head: Default, loss=0.05691501, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.14 meV / A
+INFO:root:Epoch 781: head: Default, loss=0.05690839, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.14 meV / A
+INFO:root:Epoch 782: head: Default, loss=0.05693335, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.15 meV / A
+INFO:root:Epoch 783: head: Default, loss=0.05692896, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.15 meV / A
+INFO:root:Epoch 784: head: Default, loss=0.05695792, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.16 meV / A
+INFO:root:Epoch 785: head: Default, loss=0.05694880, RMSE_E_per_atom=    1.21 meV, RMSE_F=   41.16 meV / A
+INFO:root:Epoch 786: head: Default, loss=0.05695920, RMSE_E_per_atom=    1.20 meV, RMSE_F=   41.16 meV / A
+INFO:root:Epoch 787: head: Default, loss=0.05698761, RMSE_E_per_atom=    1.20 meV, RMSE_F=   41.17 meV / A
+INFO:root:Epoch 788: head: Default, loss=0.05700872, RMSE_E_per_atom=    1.20 meV, RMSE_F=   41.18 meV / A
+INFO:root:Epoch 789: head: Default, loss=0.05700897, RMSE_E_per_atom=    1.21 meV, RMSE_F=   41.18 meV / A
+INFO:root:Epoch 790: head: Default, loss=0.05702388, RMSE_E_per_atom=    1.21 meV, RMSE_F=   41.18 meV / A
+INFO:root:Epoch 791: head: Default, loss=0.05703670, RMSE_E_per_atom=    1.21 meV, RMSE_F=   41.19 meV / A
+INFO:root:Epoch 792: head: Default, loss=0.05703747, RMSE_E_per_atom=    1.21 meV, RMSE_F=   41.19 meV / A
+INFO:root:Epoch 793: head: Default, loss=0.05704412, RMSE_E_per_atom=    1.23 meV, RMSE_F=   41.19 meV / A
+INFO:root:Epoch 794: head: Default, loss=0.05702323, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.18 meV / A
+INFO:root:Epoch 795: head: Default, loss=0.05703166, RMSE_E_per_atom=    1.21 meV, RMSE_F=   41.19 meV / A
+INFO:root:Epoch 796: head: Default, loss=0.05701744, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.18 meV / A
+INFO:root:Epoch 797: head: Default, loss=0.05701470, RMSE_E_per_atom=    1.21 meV, RMSE_F=   41.18 meV / A
+INFO:root:Epoch 798: head: Default, loss=0.05701122, RMSE_E_per_atom=    1.22 meV, RMSE_F=   41.18 meV / A
+INFO:root:Epoch 799: head: Default, loss=0.05701856, RMSE_E_per_atom=    1.23 meV, RMSE_F=   41.18 meV / A
+INFO:root:Training complete
+INFO:root:
+INFO:root:===========RESULTS===========
+INFO:root:Loading checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-178.pt
+/work/10869/armaansharma547/ls6/mace-main/mace/tools/checkpoint.py:187: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  torch.load(f=checkpoint_info.path, map_location=device),
+INFO:root:Loaded Stage one model from epoch 178 for evaluation
+INFO:root:Saving model to checkpoints/MACE_model_electrostatics_run-123.model
+INFO:root:Compiling model, saving metadata to MACE_model_electrostatics_compiled.model
+INFO:root:Computing metrics for training, validation, and test sets
+INFO:root:Skipping evaluation for heads: ['pt_head']
+INFO:root:Evaluating train_Default ...
+INFO:root:Evaluating valid_Default ...
+INFO:root:Error-table on TRAIN and VALID:
++---------------+---------------------+------------------+-------------------+
+|  config_type  | RMSE E / meV / atom | RMSE F / meV / A | relative F RMSE % |
++---------------+---------------------+------------------+-------------------+
+| train_Default |            2.4      |         25.3     |          3.40     |
+| valid_Default |            1.8      |         35.6     |          4.42     |
++---------------+---------------------+------------------+-------------------+
+INFO:root:Evaluating H2O_Default ...
+INFO:root:Error-table on TEST:
++-------------+---------------------+------------------+-------------------+
+| config_type | RMSE E / meV / atom | RMSE F / meV / A | relative F RMSE % |
++-------------+---------------------+------------------+-------------------+
+| H2O_Default |            3.2      |         41.1     |          5.67     |
++-------------+---------------------+------------------+-------------------+
+DEBUG:root:Running inference on train_Default dataset
+DEBUG:root:Running inference on valid_Default dataset
+DEBUG:root:Running inference on H2O_Default dataset
+INFO:root:Loading checkpoint: ./checkpoints/MACE_model_electrostatics_run-123_epoch-615_swa.pt
+/work/10869/armaansharma547/ls6/mace-main/mace/tools/checkpoint.py:187: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  torch.load(f=checkpoint_info.path, map_location=device),
+INFO:root:Loaded Stage two model from epoch 615 for evaluation
+INFO:root:Saving model to checkpoints/MACE_model_electrostatics_run-123_stagetwo.model
+INFO:root:Compiling model, saving metadata MACE_model_electrostatics_stagetwo_compiled.model
+/work/10869/armaansharma547/ls6/mace-main/mace-long/lib/python3.9/site-packages/torch/jit/_check.py:178: UserWarning: The TorchScript type system doesn't support instance-level annotations on empty non-base types in `__init__`. Instead, either 1) use a type annotation in the class body, or 2) wrap the type in `torch.jit.Attribute`.
+  warnings.warn(
+INFO:root:Computing metrics for training, validation, and test sets
+INFO:root:Skipping evaluation for heads: ['pt_head']
+INFO:root:Evaluating train_Default ...
+INFO:root:Evaluating valid_Default ...
+INFO:root:Error-table on TRAIN and VALID:
++---------------+---------------------+------------------+-------------------+
+|  config_type  | RMSE E / meV / atom | RMSE F / meV / A | relative F RMSE % |
++---------------+---------------------+------------------+-------------------+
+| train_Default |            1.6      |         11.8     |          1.59     |
+| valid_Default |            1.4      |         40.7     |          5.06     |
++---------------+---------------------+------------------+-------------------+
+INFO:root:Evaluating H2O_Default ...
+INFO:root:Error-table on TEST:
++-------------+---------------------+------------------+-------------------+
+| config_type | RMSE E / meV / atom | RMSE F / meV / A | relative F RMSE % |
++-------------+---------------------+------------------+-------------------+
+| H2O_Default |            1.8      |         42.1     |          5.80     |
++-------------+---------------------+------------------+-------------------+
+DEBUG:root:Running inference on train_Default dataset
+DEBUG:root:Running inference on valid_Default dataset
+DEBUG:root:Running inference on H2O_Default dataset
+INFO:root:Done

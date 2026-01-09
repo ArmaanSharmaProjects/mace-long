@@ -1,0 +1,16 @@
+cuequivariance or cuequivariance_torch is not available. Cuequivariance acceleration will be disabled.
+--- Long Range Force Test (Separation: 8.00 A) ---
+
+[ ORIGINAL MACE ]
+Force on O (Z): 0.00000000 eV/A
+Charges:        N/A (Standard MACE does not predict charges)
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+
+[ MODIFIED 4G MACE ]
+Force on O (Z): 0.00390625 eV/A
+Predicted Q:    [0.5 0.5]
+
+--- Physical Comparison ---
+RESULT: SUCCESS. The original model is blind at this range.
+The modified model correctly captures long-range electrostatics.

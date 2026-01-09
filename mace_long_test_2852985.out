@@ -1,0 +1,10 @@
+cuequivariance or cuequivariance_torch is not available. Cuequivariance acceleration will be disabled.
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+
+--- Model Output Analysis ---
+Predicted Charges: [0.5 0.5]
+Force on O (Z-direction): 0.00390625 eV/A
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+Force after 0.01A shift: 0.00389650 eV/A

@@ -1,0 +1,128 @@
+cuequivariance or cuequivariance_torch is not available. Cuequivariance acceleration will be disabled.
+==================================================
+       4G MACE MECHANISM VERIFICATION SCAN        
+==================================================
+
+[STEP 1] Inspecting Model Files...
+   > Original Model: Electrostatics = False
+   > 4G Model:       Electrostatics = True
+[PASS] Models are correctly configured.
+
+[STEP 2] Loading Calculators to GPU...
+
+[STEP 3] Running Distance Scan (2.0 A -> 15.0 A)...
+
+Dist (A)   | Orig Force   | 4G Force     | Status
+-------------------------------------------------------
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+2.00       | 1.333037e-01 | 1.534572e-01 | ACTIVE
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+4.65       | 6.656929e-03 | 1.380590e-02 | ACTIVE
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+7.31       | 0.000000e+00 | 4.683420e-03 | BLIND
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+9.96       | 0.000000e+00 | 2.520534e-03 | BLIND
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+12.61      | 0.000000e+00 | 1.571648e-03 | BLIND
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+DEBUG: Number of graphs: 1
+DEBUG: Atoms per graph: [tensor(2, device='cuda:0')]
+15.00      | 0.000000e+00 | 1.111111e-03 | BLIND
+
+[STEP 4] Generating Plot...
+
+[SUCCESS] Plot saved to 'final_proof_AuO.png'
+If the Red line drops to ~1e-16 after 5.0A and the Blue line stays up,
+you have definitive proof that your implementation works.

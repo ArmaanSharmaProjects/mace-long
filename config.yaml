@@ -1,0 +1,79 @@
+
+# ---------------------------------------------------------
+# General Experiment Settings
+# ---------------------------------------------------------
+name: "MACE_model_original"
+model: "MACE"
+device: "cuda"
+default_dtype: "float64"  # Recommended for charge solver stability
+seed: 123
+
+# ---------------------------------------------------------
+# Data Paths & Splitting
+# ---------------------------------------------------------
+train_file: "mace/data/Merging/charges_train.xyz"
+test_file: "mace/data/Merging/charges_test.xyz"
+valid_file: "mace/data/Merging/charges_val.xyz"
+# Note: MACE will ignore valid_fraction if a valid_file is provided, 
+# but uses it to split train_file if no valid_file exists.
+
+# ---------------------------------------------------------
+# Data Keys (CRITICAL)
+# ---------------------------------------------------------
+# Maps to the column names in your specific .xyz file format
+energy_key: "energy"
+forces_key: "forces"
+charges_key: "charge"        # The per-atom column ':charge:R:1'
+total_charge_key: "charge"   # The global header 'charge=0'
+
+# ---------------------------------------------------------
+# Model Architecture
+# ---------------------------------------------------------
+hidden_irreps: "128x0e + 128x1o"
+r_max: 5.0
+E0s: "average"  # Computes average atomic energies from data
+config_type_weights: '{"Default":1.0}'
+
+# ---------------------------------------------------------
+# Optimization & Training
+# ---------------------------------------------------------
+batch_size: 2
+max_num_epochs: 800
+restart_latest: True  # Resumes if a checkpoint exists
+amsgrad: True
+
+# Exponential Moving Average
+ema: True
+ema_decay: 0.99
+
+# Stage Two / SWA (Stochastic Weight Averaging)
+swa: True             # Corresponds to --stage_two
+start_swa: 600       # Corresponds to --start_stage_two
+
+# ---------------------------------------------------------
+# 4th Generation Electrostatics (New Physics)
+# ---------------------------------------------------------
+use_electrostatics: False
+
+# Loss Weights
+charges_weight: 1.0   # Weight for QEq loss
+energy_weight: 1.0
+forces_weight: 100.0  # Standard MACE default (or 10.0 depending on preference)
+
+# Hardness J (eV/e^2) - Init values (will be trained)
+hardness_init:
+  1: 10.0   # H
+  6: 12.0   # C
+  7: 13.0   # N
+  8: 14.0   # O
+  79: 8.0   # Au (Gold)
+  3: 5.0    # Li (Lithium)
+
+# Covalent Radii (Angstroms) - Fixed values for Gaussian width
+covalent_radii:
+  1: 0.31   # H
+  6: 0.76   # C
+  7: 0.71   # N
+  8: 0.66   # O
+  79: 1.36  # Au
+  3: 1.28   # Li
