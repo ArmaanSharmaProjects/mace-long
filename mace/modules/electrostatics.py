@@ -116,7 +116,14 @@ class QeqSolver(nn.Module):
 
             term2 = torch.sum(Q**2 / (2 * sigma_batch * 1.77245385))
             
-            energies_list.append(term1 + term2)
+            E_elec = term1 + term2  
+
+            E_chi = torch.sum(chi_batch * Q)
+
+            E_hard = 0.5 * torch.sum(J_batch * Q**2)
+            
+            
+            energies_list.append(E_elec + E_chi + E_hard)
             
         print(f"DEBUG: Number of graphs: {len(ptr)-1}")
         print(f"DEBUG: Atoms per graph: {[ptr[i+1]-ptr[i] for i in range(len(ptr)-1)]}")
